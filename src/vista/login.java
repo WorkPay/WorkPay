@@ -142,7 +142,8 @@ public class login extends javax.swing.JFrame {
             user = log[0];
             pass = log[1];
         }
-
+// hola 
+        
         if((txtuser.getText().equals(user)) && (txtpass.getText().equals(pass))){
           principal wp = new principal();
           wp.setVisible(true);
