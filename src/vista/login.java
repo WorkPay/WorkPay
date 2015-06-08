@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import logica.GestionIngreso;
 import logica.admin;
+import java.awt.event.*;
 
 /**
  *
@@ -75,6 +76,16 @@ public class login extends javax.swing.JFrame {
         });
 
         txtpass.setText("12345");
+        txtpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpassActionPerformed(evt);
+            }
+        });
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpassKeyPressed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/painters.png"))); // NOI18N
 
@@ -160,9 +171,23 @@ public class login extends javax.swing.JFrame {
             }        
     }//GEN-LAST:event_btingresarActionPerformed
 
+    
     private void btingresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btingresarKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btingresarKeyPressed
+
+    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtpassActionPerformed
+
+    private void txtpassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyPressed
+        // TODO add your handling code here:
+        char cTeclaPresionada = evt.getKeyChar();
+        if (cTeclaPresionada == KeyEvent.VK_ENTER) {
+            btingresar.doClick();
+        }
+    }//GEN-LAST:event_txtpassKeyPressed
 
     /**
      * @param args the command line arguments
