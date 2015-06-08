@@ -27,9 +27,83 @@ public class sueldos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listatrabajadores = new javax.swing.JList();
+        btcalcularsueldo = new javax.swing.JButton();
+        txtbuscartrabajador = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lbltrabajador = new javax.swing.JLabel();
+        lbldiastrabajados = new javax.swing.JLabel();
+        lblanticipo = new javax.swing.JLabel();
+        lblsueldo = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btanticipo = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        lbltrabajador1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtanticipo = new javax.swing.JTextField();
+        btdaranticipo = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("pago de sueldos");
+
+        listatrabajadores.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Pedro Machuca Pereira", "Marcos Wena Loco", "Juan Gabriel Canante", "Diego Juan y Pedro", "Florencio Flores del Campo", "Mario Martinez Mata", "Miguel Segura Dias" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listatrabajadores);
+
+        btcalcularsueldo.setText("Calcular Sueldo");
+        btcalcularsueldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btcalcularsueldoActionPerformed(evt);
+            }
+        });
+
+        txtbuscartrabajador.setToolTipText("Buscar Trabajador...");
+        txtbuscartrabajador.setName(""); // NOI18N
+
+        jLabel2.setText("Trabajador:");
+
+        jLabel3.setText("Días Trabajados:");
+
+        jLabel4.setText("Anticipo:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Sueldo Total:");
+
+        lbltrabajador.setText("Nombre...");
+
+        lbldiastrabajados.setText("0");
+
+        lblanticipo.setText("0");
+
+        lblsueldo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblsueldo.setText("0");
+        lblsueldo.setToolTipText("");
+
+        jLabel6.setText("$");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("$");
+
+        btanticipo.setText("Anticipo");
+
+        jLabel8.setText("Trabajador:");
+
+        lbltrabajador1.setText("Nombre...");
+
+        jLabel9.setText("Anticipo:");
+
+        jLabel10.setText("$");
+
+        btdaranticipo.setText("Dar Anticipo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,20 +111,122 @@ public class sueldos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btcalcularsueldo)
+                    .addComponent(btanticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel10)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lbltrabajador)
+                    .addComponent(lbldiastrabajados)
+                    .addComponent(lblanticipo)
+                    .addComponent(lblsueldo)
+                    .addComponent(lbltrabajador1)
+                    .addComponent(txtanticipo)
+                    .addComponent(btdaranticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbltrabajador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbldiastrabajados)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblanticipo)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblsueldo)
+                                    .addComponent(jLabel7))))
+                        .addGap(87, 87, 87)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lbltrabajador1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(txtanticipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btdaranticipo))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btcalcularsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113)
+                        .addComponent(btanticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btcalcularsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcalcularsueldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btcalcularsueldoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btanticipo;
+    private javax.swing.JButton btcalcularsueldo;
+    private javax.swing.JButton btdaranticipo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblanticipo;
+    private javax.swing.JLabel lbldiastrabajados;
+    private javax.swing.JLabel lblsueldo;
+    private javax.swing.JLabel lbltrabajador;
+    private javax.swing.JLabel lbltrabajador1;
+    private javax.swing.JList listatrabajadores;
+    private javax.swing.JTextField txtanticipo;
+    private javax.swing.JTextField txtbuscartrabajador;
     // End of variables declaration//GEN-END:variables
 }

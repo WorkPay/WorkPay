@@ -58,13 +58,13 @@ public class admin extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Editar Datos de Administrador");
 
-        jLabel3.setText("Nombre de usuario");
+        jLabel3.setText("Nombre de usuario:");
 
-        jLabel4.setText("Contraseña actual");
+        jLabel4.setText("Contraseña actual:");
 
-        jLabel5.setText("Nueva contraseña");
+        jLabel5.setText("Nueva contraseña:");
 
-        jLabel6.setText("Repetir contraseña");
+        jLabel6.setText("Repetir contraseña:");
 
         btguardaradmin.setText("Guardar Datos");
         btguardaradmin.addActionListener(new java.awt.event.ActionListener() {
@@ -89,18 +89,18 @@ public class admin extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel6)
                                         .addComponent(jLabel4)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6))
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel5))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(txtusuarioactual)
                                         .addComponent(txtpassactual, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                                         .addComponent(txtnewpass)
                                         .addComponent(txtnewpass2)))))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +127,7 @@ public class admin extends javax.swing.JInternalFrame {
                     .addComponent(txtnewpass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btguardaradmin)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         pack();

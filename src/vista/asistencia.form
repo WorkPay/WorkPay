@@ -28,13 +28,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="464" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="215" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btguardarasistencia" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -48,6 +51,8 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="555" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btguardarasistencia" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -105,7 +110,7 @@
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="Nombre Trabajador" type="java.lang.Object">
+                <Column editable="true" title="Nombre Trabajador" type="java.lang.Object">
                   <Data value="Pedro Machuca Pereira"/>
                   <Data value="Marcos Wena Loco"/>
                   <Data value="Juan Gabriel Canante"/>
@@ -113,7 +118,7 @@
                   <Data value="Florencio Flores del Campo"/>
                   <Data value="Mario Martinez Mata"/>
                   <Data value="Miguel Segura Dias"/>
-                  <Data value="null"/>
+                  <Data value=""/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -162,5 +167,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btguardarasistencia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar Asistencia"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

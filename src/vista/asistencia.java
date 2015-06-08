@@ -31,6 +31,7 @@ public class asistencia extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TBasistenciatrabajadores = new javax.swing.JTable();
+        btguardarasistencia = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -46,7 +47,7 @@ public class asistencia extends javax.swing.JInternalFrame {
                 {null, "Florencio Flores del Campo"},
                 { new Boolean(true), "Mario Martinez Mata"},
                 { new Boolean(true), "Miguel Segura Dias"},
-                {null, null},
+                {null, ""},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -77,16 +78,9 @@ public class asistencia extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.Boolean.class, java.lang.Object.class
             };
-            boolean[] canEdit = new boolean [] {
-                true, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         TBasistenciatrabajadores.setToolTipText("");
@@ -95,6 +89,8 @@ public class asistencia extends javax.swing.JInternalFrame {
         TBasistenciatrabajadores.getColumnModel().getColumn(0).setMaxWidth(60);
         TBasistenciatrabajadores.getColumnModel().getColumn(1).setPreferredWidth(50);
 
+        btguardarasistencia.setText("Registrar Asistencia");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,10 +98,12 @@ public class asistencia extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 215, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(btguardarasistencia))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,6 +113,8 @@ public class asistencia extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btguardarasistencia)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -123,6 +123,7 @@ public class asistencia extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TBasistenciatrabajadores;
+    private javax.swing.JButton btguardarasistencia;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
