@@ -40,43 +40,43 @@ public class asistencia extends javax.swing.JInternalFrame {
 
         TBasistenciatrabajadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, "Pedro Machuca Pereira"},
-                {null, "Marcos Wena Loco"},
-                { new Boolean(true), "Juan Gabriel Canante"},
-                { new Boolean(true), "Diego Juan y Pedro"},
-                {null, "Florencio Flores del Campo"},
-                { new Boolean(true), "Mario Martinez Mata"},
-                { new Boolean(true), "Miguel Segura Dias"},
-                {null, ""},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null,  new Boolean(true), "Pedro Machuca Pereira"},
+                { new Boolean(true), null, "Marcos Wena Loco"},
+                {null,  new Boolean(true), "Juan Gabriel Canante"},
+                { new Boolean(true),  new Boolean(true), "Diego Juan y Pedro"},
+                { new Boolean(true), null, "Florencio Flores del Campo"},
+                {null,  new Boolean(true), "Mario Martinez Mata"},
+                { new Boolean(true),  new Boolean(true), "Miguel Segura Dias"},
+                {null, null, ""},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Presente", "Nombre Trabajador"
+                "Mañana", "Tarde", "Nombre Trabajador"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -87,7 +87,8 @@ public class asistencia extends javax.swing.JInternalFrame {
         TBasistenciatrabajadores.setRowHeight(20);
         jScrollPane1.setViewportView(TBasistenciatrabajadores);
         TBasistenciatrabajadores.getColumnModel().getColumn(0).setMaxWidth(60);
-        TBasistenciatrabajadores.getColumnModel().getColumn(1).setPreferredWidth(50);
+        TBasistenciatrabajadores.getColumnModel().getColumn(1).setMaxWidth(60);
+        TBasistenciatrabajadores.getColumnModel().getColumn(2).setPreferredWidth(50);
 
         btguardarasistencia.setText("Registrar Asistencia");
 
