@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class GestionIngreso {
 
     private static final String SELECT = "SELECT * FROM admin";
+    //COMPLETAR INSERT
     private static final String INSERT = "INSERT INTO admin";
     private conexion conex = new conexion();
 
