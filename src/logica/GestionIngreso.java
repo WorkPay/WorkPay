@@ -4,7 +4,6 @@
  */
 package logica;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import conexion.conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
