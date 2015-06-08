@@ -19,7 +19,7 @@ public class admin extends javax.swing.JInternalFrame {
      */
     public admin() {
         initComponents();
-        
+
         ArrayList<logica.admin> lista = new GestionIngreso().seleccionar();
         String user = "";
         String pass = "";
@@ -143,20 +143,24 @@ public class admin extends javax.swing.JInternalFrame {
             user = log[0];
             pass = log[1];
         }
-        if((txtpassactual.getText().equals(pass))){
-            if (txtnewpass2.getText().equals(txtnewpass.getText())) {
-                //Crear insert para admin
-            }else{
-                JOptionPane.showMessageDialog(null, "Las nuevas contraseñas no coinciden");
-                txtnewpass.setText("");
-                txtnewpass2.setText("");
+        if (txtusuarioactual.getText().isEmpty() || txtpassactual.getText().isEmpty()
+                || txtnewpass.getText().isEmpty() || txtnewpass2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
+        } else {
+            if ((txtpassactual.getText().equals(pass))){
+                if (txtnewpass2.getText().equals(txtnewpass.getText())) {
+                    //CREAR INSERT PARA ADMIN
+                } else {
+                    JOptionPane.showMessageDialog(null, "Las nuevas contraseñas no coinciden");
+                    txtnewpass.setText("");
+                    txtnewpass2.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta");
+                txtpassactual.setText("");
             }
-         }else{
-          JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta");
-          txtpassactual.setText("");
-      }
+        }
     }//GEN-LAST:event_btguardaradminActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btguardaradmin;
     private javax.swing.JLabel jLabel1;

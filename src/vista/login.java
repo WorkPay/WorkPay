@@ -148,17 +148,16 @@ public class login extends javax.swing.JFrame {
             pass = log[1];
         }
 // hola 
-        
-        if((txtuser.getText().equals(user)) && (txtpass.getText().equals(pass))){
-          principal wp = new principal();
-          wp.setVisible(true);
-          wp.setExtendedState(wp.MAXIMIZED_BOTH);
-          this.dispose();
-         }else{
-          JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-          txtuser.setText("");
-          txtpass.setText("");
-      }
+            if ((txtuser.getText().equals(user)) && (txtpass.getText().equals(pass))) {
+                principal wp = new principal();
+                wp.setVisible(true);
+                wp.setExtendedState(wp.MAXIMIZED_BOTH);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+                txtuser.setText("");
+                txtpass.setText("");
+            }        
     }//GEN-LAST:event_btingresarActionPerformed
 
     private void btingresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btingresarKeyPressed
