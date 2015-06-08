@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package vista;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Alexi
@@ -15,6 +15,7 @@ public class asistencia extends javax.swing.JInternalFrame {
      */
     public asistencia() {
         initComponents();
+        
     }
 
     /**
@@ -26,11 +27,73 @@ public class asistencia extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TBasistenciatrabajadores = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
 
-        jLabel1.setText("asistencia");
+        jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
+        jLabel1.setText("gestion de asistencia");
+
+        TBasistenciatrabajadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, "Pedro Machuca Pereira"},
+                {null, "Marcos Wena Loco"},
+                { new Boolean(true), "Juan Gabriel Canante"},
+                { new Boolean(true), "Diego Juan y Pedro"},
+                {null, "Florencio Flores del Campo"},
+                { new Boolean(true), "Mario Martinez Mata"},
+                { new Boolean(true), "Miguel Segura Dias"},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Presente", "Nombre Trabajador"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TBasistenciatrabajadores.setToolTipText("");
+        TBasistenciatrabajadores.setRowHeight(20);
+        jScrollPane1.setViewportView(TBasistenciatrabajadores);
+        TBasistenciatrabajadores.getColumnModel().getColumn(0).setMaxWidth(60);
+        TBasistenciatrabajadores.getColumnModel().getColumn(1).setPreferredWidth(50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -38,20 +101,30 @@ public class asistencia extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(410, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 215, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(342, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TBasistenciatrabajadores;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

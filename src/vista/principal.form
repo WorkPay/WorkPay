@@ -32,9 +32,10 @@
                   <Component id="btabrirsueldos" max="32767" attributes="0"/>
                   <Component id="btabririnformes" max="32767" attributes="0"/>
                   <Component id="btsalir" max="32767" attributes="0"/>
+                  <Component id="btadmin" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jDesktopPane1" pref="583" max="32767" attributes="0"/>
+              <Component id="jDesktopPane1" pref="581" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,7 +50,9 @@
               <Component id="btabrirsueldos" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btabririnformes" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="293" max="32767" attributes="0"/>
+              <EmptySpace pref="259" max="32767" attributes="0"/>
+              <Component id="btadmin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btsalir" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -100,6 +103,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btsalirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btadmin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Administrador"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btadminActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

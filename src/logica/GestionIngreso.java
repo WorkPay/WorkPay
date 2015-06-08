@@ -4,6 +4,7 @@
  */
 package logica;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import conexion.conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 public class GestionIngreso {
 
     private static final String SELECT = "SELECT * FROM admin";
+    //COMPLETAR INSERT
+    private static final String INSERT = "INSERT INTO admin";
     private conexion conex = new conexion();
 
     public ArrayList<admin> seleccionar() {
