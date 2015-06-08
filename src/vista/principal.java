@@ -44,6 +44,7 @@ public class principal extends javax.swing.JFrame {
         btabrirsueldos = new javax.swing.JButton();
         btabririnformes = new javax.swing.JButton();
         btsalir = new javax.swing.JButton();
+        btadmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -83,6 +84,8 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
+        btadmin.setText("Administrador");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,9 +97,10 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(btabrirtrabajadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btabrirsueldos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btabririnformes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btadmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE))
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +113,9 @@ public class principal extends javax.swing.JFrame {
                 .addComponent(btabrirsueldos)
                 .addGap(18, 18, 18)
                 .addComponent(btabririnformes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
+                .addComponent(btadmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btsalir)
                 .addContainerGap())
             .addComponent(jDesktopPane1)
@@ -214,6 +220,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JButton btabririnformes;
     private javax.swing.JButton btabrirsueldos;
     private javax.swing.JButton btabrirtrabajadores;
+    private javax.swing.JButton btadmin;
     private javax.swing.JButton btsalir;
     private javax.swing.JDesktopPane jDesktopPane1;
     // End of variables declaration//GEN-END:variables
