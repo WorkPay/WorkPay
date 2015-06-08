@@ -28,7 +28,8 @@ public class sueldos extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setText("sueldos");
+        jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
+        jLabel1.setText("pago de sueldos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,14 +38,14 @@ public class sueldos extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         pack();

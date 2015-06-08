@@ -68,6 +68,11 @@ public class login extends javax.swing.JFrame {
                 btingresarActionPerformed(evt);
             }
         });
+        btingresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btingresarKeyPressed(evt);
+            }
+        });
 
         txtpass.setText("12345");
 
@@ -155,6 +160,10 @@ public class login extends javax.swing.JFrame {
           txtpass.setText("");
       }
     }//GEN-LAST:event_btingresarActionPerformed
+
+    private void btingresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btingresarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btingresarKeyPressed
 
     /**
      * @param args the command line arguments

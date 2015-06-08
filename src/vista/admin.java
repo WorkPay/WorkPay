@@ -8,12 +8,12 @@ package vista;
  *
  * @author Alexi
  */
-public class trabajadores extends javax.swing.JInternalFrame {
+public class admin extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form trabajadores
+     * Creates new form admin
      */
-    public trabajadores() {
+    public admin() {
         initComponents();
     }
 
@@ -29,7 +29,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
-        jLabel1.setText("administracion de trabajadores");
+        jLabel1.setText("configuracion de administrador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -38,7 +38,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

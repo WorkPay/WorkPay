@@ -28,7 +28,8 @@ public class informes extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setText("informes");
+        jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
+        jLabel1.setText("generacion de informes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,14 +38,14 @@ public class informes extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         pack();

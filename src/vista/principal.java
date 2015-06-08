@@ -85,6 +85,11 @@ public class principal extends javax.swing.JFrame {
         });
 
         btadmin.setText("Administrador");
+        btadmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btadminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,6 +185,19 @@ public class principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btsalirActionPerformed
+
+    private void btadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btadminActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        admin a = new admin();
+        jDesktopPane1.add(a);
+        a.setVisible(true);
+        try {
+            a.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(sueldos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btadminActionPerformed
 
     /**
      * @param args the command line arguments
