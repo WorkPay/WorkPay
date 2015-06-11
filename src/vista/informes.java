@@ -11,6 +11,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -100,7 +101,7 @@ public class informes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         FileOutputStream archivo;
         try {
-            archivo = new FileOutputStream("C:/Lillo/Informe.pdf");
+            archivo = new FileOutputStream("C:/Informes/Informe.pdf");
             Document documento = new Document();
             PdfWriter.getInstance(documento, archivo);
             documento.open();
@@ -110,9 +111,12 @@ public class informes extends javax.swing.JInternalFrame {
             documento.add(new Paragraph("Pero no :)"));
             documento.close();
             JOptionPane.showMessageDialog(null, "Informe creado exitosamente, el archivo PDF quedó almacenado en...");
+            Process p = Runtime.getRuntime().exec("explorer.exe C:\\Informes");
         } catch (FileNotFoundException | DocumentException ex) {
             Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al generar el Informe PDF!");
+        } catch (IOException ex) {
+            Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
