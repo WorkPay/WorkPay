@@ -7,26 +7,27 @@ package vista;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logica.GestionIngreso;
+import logica.admin;
 
 /**
  *
  * @author Alexi
  */
-public class admin extends javax.swing.JInternalFrame {
+public class vadmin extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form admin
      */
-    public admin() {
+    public vadmin() {
         initComponents();
 
         ArrayList<logica.admin> lista = new GestionIngreso().seleccionar();
         String user = "";
-        String pass = "";
+        //String pass = "";
         for (logica.admin aux : lista) {
             String[] log = {aux.getUsuario(), aux.getPass()};
             user = log[0];
-            pass = log[1];
+            //pass = log[1];
         }
         txtusuarioactual.setText(user);
     }
@@ -127,7 +128,7 @@ public class admin extends javax.swing.JInternalFrame {
                     .addComponent(txtnewpass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btguardaradmin)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,9 +148,20 @@ public class admin extends javax.swing.JInternalFrame {
                 || txtnewpass.getText().isEmpty() || txtnewpass2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
         } else {
-            if ((txtpassactual.getText().equals(pass))){
+            if ((txtpassactual.getText().equals(pass))) {
                 if (txtnewpass2.getText().equals(txtnewpass.getText())) {
-                    //CREAR INSERT PARA ADMIN
+                    //UPDATE DE ADMIN
+                    try {
+                        String u = txtusuarioactual.getText().toString();
+                        String p = txtnewpass2.getText().toString();
+                        admin adm = new admin();
+                        adm.setUsuario(u);
+                        adm.setPass(p);
+                        new GestionIngreso().updateAdmin(adm);
+                        this.dispose();                        
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error al modificar los datos de Administrador!");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Las nuevas contraseñas no coinciden");
                     txtnewpass.setText("");

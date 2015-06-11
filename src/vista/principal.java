@@ -49,6 +49,8 @@ public class principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jDesktopPane1.setToolTipText("");
+
         btabrirasistencia.setText("Asistencia");
         btabrirasistencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +191,7 @@ public class principal extends javax.swing.JFrame {
     private void btadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btadminActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
-        admin a = new admin();
+        vadmin a = new vadmin();
         jDesktopPane1.add(a);
         a.setVisible(true);
         try {
