@@ -4,6 +4,17 @@
  */
 package vista;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alexi
@@ -27,9 +38,30 @@ public class informes extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listatrabajadores = new javax.swing.JList();
+        txtbuscartrabajador = new javax.swing.JTextField();
+        btpdf = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("generacion de informes");
+
+        listatrabajadores.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Pedro Machuca Pereira", "Marcos Wena Loco", "Juan Gabriel Canante", "Diego Juan y Pedro", "Florencio Flores del Campo", "Mario Martinez Mata", "Miguel Segura Dias" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listatrabajadores);
+
+        txtbuscartrabajador.setToolTipText("Buscar Trabajador...");
+        txtbuscartrabajador.setName(""); // NOI18N
+
+        btpdf.setText("Generar PDF");
+        btpdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btpdfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,20 +69,59 @@ public class informes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btpdf)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btpdf, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btpdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpdfActionPerformed
+        // TODO add your handling code here:
+        FileOutputStream archivo;
+        try {
+            archivo = new FileOutputStream("C:/Lillo/Informe.pdf");
+            Document documento = new Document();
+            PdfWriter.getInstance(documento, archivo);
+            documento.open();
+            documento.add(new Paragraph("Hola Mundo!"));
+            documento.add(new Paragraph("He creado un documento en pdf"));
+            documento.add(new Paragraph("El cual debería llenar con información relevante..."));
+            documento.add(new Paragraph("Pero no :)"));
+            documento.close();
+            JOptionPane.showMessageDialog(null, "Informe creado exitosamente, el archivo PDF quedó almacenado en...");
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al generar el Informe PDF!");
+        }
+
+
+    }//GEN-LAST:event_btpdfActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btpdf;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList listatrabajadores;
+    private javax.swing.JTextField txtbuscartrabajador;
     // End of variables declaration//GEN-END:variables
 }
