@@ -166,10 +166,12 @@ public class vadmin extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "Las nuevas contraseñas no coinciden");
                     txtnewpass.setText("");
                     txtnewpass2.setText("");
+                    txtnewpass.requestFocus();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta");
                 txtpassactual.setText("");
+                txtpassactual.requestFocus();
             }
         }
     }//GEN-LAST:event_btguardaradminActionPerformed

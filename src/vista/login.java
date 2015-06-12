@@ -172,6 +172,7 @@ public class login extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
           txtuser.setText("");
           txtpass.setText("");
+          txtuser.requestFocus();
       }
     }//GEN-LAST:event_btingresarActionPerformed
 

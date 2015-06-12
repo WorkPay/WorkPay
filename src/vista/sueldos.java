@@ -48,6 +48,7 @@ public class sueldos extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         txtanticipo = new javax.swing.JTextField();
         btdaranticipo = new javax.swing.JButton();
+        btpagarsueldo = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("pago de sueldos");
@@ -105,6 +106,13 @@ public class sueldos extends javax.swing.JInternalFrame {
 
         btdaranticipo.setText("Dar Anticipo");
 
+        btpagarsueldo.setText("Pagar Sueldo");
+        btpagarsueldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btpagarsueldoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,13 +147,15 @@ public class sueldos extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel10)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbltrabajador)
-                    .addComponent(lbldiastrabajados)
-                    .addComponent(lblanticipo)
-                    .addComponent(lblsueldo)
-                    .addComponent(lbltrabajador1)
-                    .addComponent(txtanticipo)
-                    .addComponent(btdaranticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btpagarsueldo, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lbltrabajador)
+                        .addComponent(lbldiastrabajados)
+                        .addComponent(lblanticipo)
+                        .addComponent(lblsueldo)
+                        .addComponent(lbltrabajador1)
+                        .addComponent(txtanticipo)
+                        .addComponent(btdaranticipo, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -179,7 +189,9 @@ public class sueldos extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblsueldo)
                                     .addComponent(jLabel7))))
-                        .addGap(87, 87, 87)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btpagarsueldo)
+                        .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(lbltrabajador1))
@@ -195,7 +207,7 @@ public class sueldos extends javax.swing.JInternalFrame {
                         .addComponent(btcalcularsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113)
                         .addComponent(btanticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,10 +217,15 @@ public class sueldos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btcalcularsueldoActionPerformed
 
+    private void btpagarsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpagarsueldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btpagarsueldoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btanticipo;
     private javax.swing.JButton btcalcularsueldo;
     private javax.swing.JButton btdaranticipo;
+    private javax.swing.JButton btpagarsueldo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
