@@ -211,7 +211,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
                 String nombre = txtnombretrabajador.getText().toString().toUpperCase();
                 String rut = txtruttrabajador.getText().toString();
                 int telefono = Integer.parseInt(txtfonotrabajador.getText().toString());
-                int tipo = 0;
+                int tipo;
                 if (cbtipotrabajador.getSelectedItem().toString().equals("Maestro")) {
                     tipo = 1;
                 } else {
