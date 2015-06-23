@@ -9,6 +9,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import logica.GestionTrabajadores;
 import logica.trabajador;
+import org.jdesktop.xswingx.PromptSupport;
 
 /**
  *
@@ -21,6 +22,8 @@ public class trabajadores extends javax.swing.JInternalFrame {
      */
     public trabajadores() {
         initComponents();
+        
+        PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
 
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         DefaultListModel model = new DefaultListModel();
@@ -118,6 +121,14 @@ public class trabajadores extends javax.swing.JInternalFrame {
 
         txtbuscartrabajador.setToolTipText("Buscar Trabajador...");
         txtbuscartrabajador.setName(""); // NOI18N
+        txtbuscartrabajador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtbuscartrabajadorKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtbuscartrabajadorKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,7 +205,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(bteditartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         txtbuscartrabajador.getAccessibleContext().setAccessibleName("");
@@ -273,6 +284,22 @@ public class trabajadores extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtfonotrabajadorKeyTyped
+
+    private void txtbuscartrabajadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyTyped
+        // TODO add your handling code here:
+        String nombre =  txtbuscartrabajador.getText().toUpperCase();
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombre);
+        DefaultListModel model = new DefaultListModel();
+        for (logica.trabajador aux : lista) {
+            model.addElement(aux.getNombre());
+        }
+        listatrabajadores.setModel(model);
+    }//GEN-LAST:event_txtbuscartrabajadorKeyTyped
+
+    private void txtbuscartrabajadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbuscartrabajadorKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bteditartrabajador;
     private javax.swing.JButton btguardartrabajador;

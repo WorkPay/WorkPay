@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import logica.GestionTrabajadores;
+import org.jdesktop.xswingx.PromptSupport;
 
 /**
  *
@@ -30,6 +31,9 @@ public class informes extends javax.swing.JInternalFrame {
      */
     public informes() {
         initComponents();
+        
+        PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
+        
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         DefaultListModel model = new DefaultListModel();
         for (logica.trabajador aux : lista) {
@@ -65,6 +69,11 @@ public class informes extends javax.swing.JInternalFrame {
 
         txtbuscartrabajador.setToolTipText("Buscar Trabajador...");
         txtbuscartrabajador.setName(""); // NOI18N
+        txtbuscartrabajador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtbuscartrabajadorKeyTyped(evt);
+            }
+        });
 
         btpdf.setText("Generar PDF");
         btpdf.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +108,7 @@ public class informes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btpdf, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,6 +136,18 @@ public class informes extends javax.swing.JInternalFrame {
             Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btpdfActionPerformed
+
+    private void txtbuscartrabajadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyTyped
+        // TODO add your handling code here:
+        String nombre =  txtbuscartrabajador.getText().toUpperCase();
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombre);
+        DefaultListModel model = new DefaultListModel();
+        for (logica.trabajador aux : lista) {
+            model.addElement(aux.getNombre());
+        }
+        listatrabajadores.setModel(model);
+    }//GEN-LAST:event_txtbuscartrabajadorKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btpdf;
     private javax.swing.JLabel jLabel1;

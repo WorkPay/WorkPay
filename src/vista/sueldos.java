@@ -7,6 +7,7 @@ package vista;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import logica.GestionTrabajadores;
+import org.jdesktop.xswingx.PromptSupport;
 
 /**
  *
@@ -19,6 +20,9 @@ public class sueldos extends javax.swing.JInternalFrame {
      */
     public sueldos() {
         initComponents();
+        
+        PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
+        
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         DefaultListModel model = new DefaultListModel();
         for (logica.trabajador aux : lista) {
@@ -79,6 +83,11 @@ public class sueldos extends javax.swing.JInternalFrame {
 
         txtbuscartrabajador.setToolTipText("Buscar Trabajador...");
         txtbuscartrabajador.setName(""); // NOI18N
+        txtbuscartrabajador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtbuscartrabajadorKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Trabajador:");
 
@@ -158,14 +167,13 @@ public class sueldos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btpagarsueldo, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lbltrabajador)
-                        .addComponent(lbldiastrabajados)
-                        .addComponent(lblanticipo)
-                        .addComponent(lblsueldo)
-                        .addComponent(lbltrabajador1)
-                        .addComponent(txtanticipo)
-                        .addComponent(btdaranticipo, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
+                    .addComponent(lbltrabajador)
+                    .addComponent(lbldiastrabajados)
+                    .addComponent(lblanticipo)
+                    .addComponent(lblsueldo)
+                    .addComponent(lbltrabajador1)
+                    .addComponent(txtanticipo)
+                    .addComponent(btdaranticipo, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -217,7 +225,7 @@ public class sueldos extends javax.swing.JInternalFrame {
                         .addComponent(btcalcularsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113)
                         .addComponent(btanticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,6 +238,17 @@ public class sueldos extends javax.swing.JInternalFrame {
     private void btpagarsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpagarsueldoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btpagarsueldoActionPerformed
+
+    private void txtbuscartrabajadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyTyped
+        // TODO add your handling code here:
+        String nombre =  txtbuscartrabajador.getText().toUpperCase();
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombre);
+        DefaultListModel model = new DefaultListModel();
+        for (logica.trabajador aux : lista) {
+            model.addElement(aux.getNombre());
+        }
+        listatrabajadores.setModel(model);
+    }//GEN-LAST:event_txtbuscartrabajadorKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btanticipo;

@@ -3,23 +3,26 @@
  * and open the template in the editor.
  */
 package logica;
+
 import conexion.conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+
 /**
  *
  * @author Alexi
  */
 public class GestionTrabajadores {
-    
+
     private static final String INSERT = "INSERT INTO trabajador (Nombre, Rut, Telefono, Tipo, Comentarios, Asistencia, Anticipo) VALUES(?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT = "SELECT * FROM trabajador";
+    private static final String SELECTFILTRO = "SELECT * FROM trabajador WHERE Nombre LIKE ?";
     private conexion conex = new conexion();
-    
-    public void insertar (trabajador trab){
+
+    public void insertar(trabajador trab) {
         conex.conectar();
-        try{
+        try {
             PreparedStatement st = conex.getConector().prepareStatement(INSERT);
             st.setString(1, trab.getNombre());
             st.setString(2, trab.getRut());
@@ -30,13 +33,13 @@ public class GestionTrabajadores {
             st.setInt(7, trab.getAnticipo());
             st.executeUpdate();
             JOptionPane.showMessageDialog(null, "Trabajador ingresado correctamente");
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        }        
+        }
         conex.desconectar();
     }
-    
-   public ArrayList<trabajador> seleccionar() {
+
+    public ArrayList<trabajador> seleccionar() {
         ArrayList<trabajador> lista = new ArrayList<>();
         conex.conectar();
         try {
@@ -60,7 +63,32 @@ public class GestionTrabajadores {
         conex.desconectar();
         return lista;
     }
-    
+
+    public ArrayList<trabajador> seleccionarFiltro(String nombre) {
+        ArrayList<trabajador> lista = new ArrayList<>();
+        conex.conectar();
+        String name = "%"+nombre+"%";
+        try {
+            PreparedStatement st = conex.getConector().prepareStatement(SELECTFILTRO);
+            st.setString(1, name);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                trabajador trab = new trabajador();
+                trab.setNombre(rs.getString(1));
+                trab.setRut(rs.getString(2));
+                trab.setTelefono(rs.getInt(3));
+                trab.setTipo(rs.getInt(4));
+                trab.setComentarios(rs.getString(5));
+                trab.setAsistencia(rs.getDouble(6));
+                trab.setAnticipo(rs.getInt(7));
+                lista.add(trab);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        conex.desconectar();
+        return lista;
+    }
 //        public static boolean validarRut(String rut) {
 //        boolean validacion = false;
 //        try {
