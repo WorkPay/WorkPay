@@ -12,9 +12,12 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import logica.GestionTrabajadores;
 
 /**
  *
@@ -27,6 +30,12 @@ public class informes extends javax.swing.JInternalFrame {
      */
     public informes() {
         initComponents();
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
+        DefaultListModel model = new DefaultListModel();
+        for (logica.trabajador aux : lista) {
+            model.addElement(aux.getNombre());
+        }
+        listatrabajadores.setModel(model);
     }
 
     /**

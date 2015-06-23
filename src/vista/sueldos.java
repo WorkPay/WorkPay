@@ -4,6 +4,10 @@
  */
 package vista;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import logica.GestionTrabajadores;
+
 /**
  *
  * @author Alexi
@@ -15,6 +19,12 @@ public class sueldos extends javax.swing.JInternalFrame {
      */
     public sueldos() {
         initComponents();
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
+        DefaultListModel model = new DefaultListModel();
+        for (logica.trabajador aux : lista) {
+            model.addElement(aux.getNombre());
+        }
+        listatrabajadores.setModel(model);
     }
 
     /**

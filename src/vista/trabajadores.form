@@ -70,7 +70,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="bteditartrabajador" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="111" max="32767" attributes="0"/>
+                      <EmptySpace pref="84" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -118,7 +118,7 @@
                   </Group>
                   <Component id="bteditartrabajador" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -205,19 +205,6 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JList" name="listatrabajadores">
-          <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="Pedro Machuca Pereira"/>
-                <StringItem index="1" value="Marcos Wena Loco"/>
-                <StringItem index="2" value="Juan Gabriel Canante"/>
-                <StringItem index="3" value="Diego Juan y Pedro"/>
-                <StringItem index="4" value="Florencio Flores del Campo"/>
-                <StringItem index="5" value="Mario Martinez Mata"/>
-                <StringItem index="6" value="Miguel Segura Dias"/>
-              </StringArray>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

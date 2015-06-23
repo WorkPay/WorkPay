@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GestionTrabajadores {
     
     private static final String INSERT = "INSERT INTO trabajador (Nombre, Rut, Telefono, Tipo, Comentarios, Asistencia, Anticipo) VALUES(?, ?, ?, ?, ?, ?, ?)";
-    private static final String SELECT = "SELECT * FROM trabajadores";
+    private static final String SELECT = "SELECT * FROM trabajador";
     private conexion conex = new conexion();
     
     public void insertar (trabajador trab){
@@ -36,28 +36,53 @@ public class GestionTrabajadores {
         conex.desconectar();
     }
     
-        public static boolean validarRut(String rut) {
-        boolean validacion = false;
+   public ArrayList<trabajador> seleccionar() {
+        ArrayList<trabajador> lista = new ArrayList<>();
+        conex.conectar();
         try {
-            rut = rut.toUpperCase();
-            rut = rut.replace(".", "");
-            rut = rut.replace("-", "");
-            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+            PreparedStatement st = conex.getConector().prepareStatement(SELECT);
+            ResultSet rs = st.executeQuery();
 
-            char dv = rut.charAt(rut.length() - 1);
-
-            int m = 0, s = 1;
-            for (; rutAux != 0; rutAux /= 10) {
-                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+            while (rs.next()) {
+                trabajador trab = new trabajador();
+                trab.setNombre(rs.getString(1));
+                trab.setRut(rs.getString(2));
+                trab.setTelefono(rs.getInt(3));
+                trab.setTipo(rs.getInt(4));
+                trab.setComentarios(rs.getString(5));
+                trab.setAsistencia(rs.getDouble(6));
+                trab.setAnticipo(rs.getInt(7));
+                lista.add(trab);
             }
-            if (dv == (char) (s != 0 ? s + 47 : 75)) {
-                validacion = true;
-            }
-
-        } catch (java.lang.NumberFormatException e) {
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-        return validacion;
+        conex.desconectar();
+        return lista;
     }
+    
+//        public static boolean validarRut(String rut) {
+//        boolean validacion = false;
+//        try {
+//            rut = rut.toUpperCase();
+//            rut = rut.replace(".", "");
+//            rut = rut.replace("-", "");
+//            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+//
+//            char dv = rut.charAt(rut.length() - 1);
+//
+//            int m = 0, s = 1;
+//            for (; rutAux != 0; rutAux /= 10) {
+//                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+//            }
+//            if (dv == (char) (s != 0 ? s + 47 : 75)) {
+//                validacion = true;
+//            }
+//
+//        } catch (java.lang.NumberFormatException e) {
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//        return validacion;
+//    }
 }

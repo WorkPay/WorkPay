@@ -4,6 +4,8 @@
  */
 package vista;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import logica.GestionTrabajadores;
 import logica.trabajador;
@@ -20,6 +22,12 @@ public class trabajadores extends javax.swing.JInternalFrame {
     public trabajadores() {
         initComponents();
 
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
+        DefaultListModel model = new DefaultListModel();
+        for (logica.trabajador aux : lista) {
+            model.addElement(aux.getNombre());
+        }
+        listatrabajadores.setModel(model);
     }
 
     public static boolean validarRut(String rut) {
@@ -104,11 +112,6 @@ public class trabajadores extends javax.swing.JInternalFrame {
 
         cbtipotrabajador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Maestro", "Ayudante", "Principiante" }));
 
-        listatrabajadores.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Pedro Machuca Pereira", "Marcos Wena Loco", "Juan Gabriel Canante", "Diego Juan y Pedro", "Florencio Flores del Campo", "Mario Martinez Mata", "Miguel Segura Dias" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listatrabajadores);
 
         bteditartrabajador.setText("Editar Información");
@@ -155,7 +158,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
                             .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bteditartrabajador)
-                        .addContainerGap(111, Short.MAX_VALUE))))
+                        .addContainerGap(84, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +194,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(bteditartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         txtbuscartrabajador.getAccessibleContext().setAccessibleName("");
@@ -242,10 +245,17 @@ public class trabajadores extends javax.swing.JInternalFrame {
                         txtfonotrabajador.setText("");
                         txtcomentarios.setText("");
                         cbtipotrabajador.setSelectedIndex(0);
+                        //Recargar lista
+                        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
+                        DefaultListModel model = new DefaultListModel();
+                        for (logica.trabajador aux : lista) {
+                            model.addElement(aux.getNombre());
+                        }
+                        listatrabajadores.setModel(model);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error al ingresar los datos!");
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "El RUT no es válido!");
                 }
 

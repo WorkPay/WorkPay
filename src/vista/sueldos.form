@@ -58,15 +58,13 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btpagarsueldo" pref="130" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lbltrabajador" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbldiastrabajados" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblanticipo" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblsueldo" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbltrabajador1" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtanticipo" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btdaranticipo" alignment="0" pref="130" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="lbltrabajador" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbldiastrabajados" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblanticipo" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblsueldo" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbltrabajador1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtanticipo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btdaranticipo" alignment="0" pref="130" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
@@ -131,7 +129,7 @@
                       <Component id="btanticipo" min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

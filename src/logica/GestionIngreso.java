@@ -8,6 +8,7 @@ import conexion.conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -45,8 +46,11 @@ public class GestionIngreso {
         conex.conectar();
         try {
             PreparedStatement st = conex.getConector().prepareStatement(UPDATE);
+            //Encriptación a MD5
+            //String md5 = DigestUtils.md5Hex(adm.getPass().toString());
             st.setString(1, adm.getUsuario());
             st.setString(2, adm.getPass());
+            //st.setString(2, md5);
             st.executeUpdate();
             JOptionPane.showMessageDialog(null, "Nombre de Usuario y Contraseña editados correctamente");
         } catch (SQLException ex) {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import logica.GestionIngreso;
 import logica.admin;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -128,7 +129,7 @@ public class vadmin extends javax.swing.JInternalFrame {
                     .addComponent(txtnewpass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btguardaradmin)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pack();
@@ -144,6 +145,8 @@ public class vadmin extends javax.swing.JInternalFrame {
             user = log[0];
             pass = log[1];
         }
+        //Desencriptar PASS
+        
         if (txtusuarioactual.getText().isEmpty() || txtpassactual.getText().isEmpty()
                 || txtnewpass.getText().isEmpty() || txtnewpass2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
@@ -175,6 +178,7 @@ public class vadmin extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btguardaradminActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btguardaradmin;
     private javax.swing.JLabel jLabel1;

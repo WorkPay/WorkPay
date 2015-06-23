@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import logica.GestionIngreso;
 import logica.admin;
 import java.awt.event.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -162,7 +163,8 @@ public class login extends javax.swing.JFrame {
             user = log[0];
             pass = log[1];
         }
-       
+        //Desencriptar MD5
+ 
         if((txtuser.getText().equals(user)) && (txtpass.getText().equals(pass))){
           principal wp = new principal();
           wp.setVisible(true);

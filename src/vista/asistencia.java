@@ -3,7 +3,14 @@
  * and open the template in the editor.
  */
 package vista;
+
+import com.itextpdf.text.pdf.ColumnText;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.GestionTrabajadores;
+
 /**
  *
  * @author Alexi
@@ -15,7 +22,15 @@ public class asistencia extends javax.swing.JInternalFrame {
      */
     public asistencia() {
         initComponents();
-        
+
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
+        //DefaultTableModel model = new DefaultTableModel();
+        int i = -1;
+        for (logica.trabajador aux : lista) {
+            i++;
+            TBasistenciatrabajadores.setValueAt(aux.getNombre(), i, 2);
+        }      
+
     }
 
     /**
@@ -40,14 +55,34 @@ public class asistencia extends javax.swing.JInternalFrame {
 
         TBasistenciatrabajadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null,  new Boolean(true), "Pedro Machuca Pereira"},
-                { new Boolean(true), null, "Marcos Wena Loco"},
-                {null,  new Boolean(true), "Juan Gabriel Canante"},
-                { new Boolean(true),  new Boolean(true), "Diego Juan y Pedro"},
-                { new Boolean(true), null, "Florencio Flores del Campo"},
-                {null,  new Boolean(true), "Mario Martinez Mata"},
-                { new Boolean(true),  new Boolean(true), "Miguel Segura Dias"},
                 {null, null, ""},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -102,8 +137,8 @@ public class asistencia extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(btguardarasistencia))
+                            .addComponent(btguardarasistencia)
+                            .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -116,12 +151,11 @@ public class asistencia extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btguardarasistencia)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TBasistenciatrabajadores;
     private javax.swing.JButton btguardarasistencia;
