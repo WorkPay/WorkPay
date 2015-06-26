@@ -18,7 +18,30 @@ public class GestionTrabajadores {
     private static final String INSERT = "INSERT INTO trabajador (Nombre, Rut, Telefono, Tipo, Comentarios, Asistencia, Anticipo) VALUES(?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT = "SELECT * FROM trabajador";
     private static final String SELECTFILTRO = "SELECT * FROM trabajador WHERE Nombre LIKE ?";
+    private static final String UPDATE = "UPDATE trabajador SET Nombre=?, Rut=?, Telefono=?, Tipo=?, Comentarios=?, Asistencia=?, Anticipo=? WHERE Rut=?";
     private conexion conex = new conexion();
+    
+    
+    public void editar(trabajador trab, String rut) {
+        conex.conectar();
+        try {
+            PreparedStatement st = conex.getConector().prepareStatement(UPDATE);
+            st.setString(1, trab.getNombre());
+            st.setString(2, trab.getRut());
+            st.setInt(3, trab.getTelefono());
+            st.setInt(4, trab.getTipo());
+            st.setString(5, trab.getComentarios());
+            st.setDouble(6, trab.getAsistencia());
+            st.setInt(7, trab.getAnticipo());
+            //traer RUT            
+            st.setString(8, rut);
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos de Trabajador editados correctamente");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        conex.desconectar();
+    }
 
     public void insertar(trabajador trab) {
         conex.conectar();

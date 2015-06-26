@@ -145,13 +145,13 @@ public class vadmin extends javax.swing.JInternalFrame {
             user = log[0];
             pass = log[1];
         }
-        //Desencriptar PASS
+        String md5 = DigestUtils.md5Hex(txtpassactual.getText());
         
         if (txtusuarioactual.getText().isEmpty() || txtpassactual.getText().isEmpty()
                 || txtnewpass.getText().isEmpty() || txtnewpass2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
         } else {
-            if ((txtpassactual.getText().equals(pass))) {
+            if ((md5.equals(pass))) {
                 if (txtnewpass2.getText().equals(txtnewpass.getText())) {
                     //UPDATE DE ADMIN
                     try {

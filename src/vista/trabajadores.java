@@ -16,7 +16,7 @@ import org.jdesktop.xswingx.PromptSupport;
  * @author Alexi
  */
 public class trabajadores extends javax.swing.JInternalFrame {
-
+String rutEditar = "";
     /**
      * Creates new form trabajadores
      */
@@ -24,6 +24,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
         initComponents();
         
         PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
+        
 
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         DefaultListModel model = new DefaultListModel();
@@ -31,7 +32,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
             model.addElement(aux.getNombre());
         }
         listatrabajadores.setModel(model);
-    }
+    }    
 
     public static boolean validarRut(String rut) {
         boolean validacion = false;
@@ -84,6 +85,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
         listatrabajadores = new javax.swing.JList();
         bteditartrabajador = new javax.swing.JButton();
         txtbuscartrabajador = new javax.swing.JTextField();
+        bteditar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("administracion de trabajadores");
@@ -118,6 +120,11 @@ public class trabajadores extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(listatrabajadores);
 
         bteditartrabajador.setText("Editar Información");
+        bteditartrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteditartrabajadorActionPerformed(evt);
+            }
+        });
 
         txtbuscartrabajador.setToolTipText("Buscar Trabajador...");
         txtbuscartrabajador.setName(""); // NOI18N
@@ -127,6 +134,13 @@ public class trabajadores extends javax.swing.JInternalFrame {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtbuscartrabajadorKeyTyped(evt);
+            }
+        });
+
+        bteditar.setText("Editar");
+        bteditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteditarActionPerformed(evt);
             }
         });
 
@@ -143,17 +157,6 @@ public class trabajadores extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbtipotrabajador, 0, 172, Short.MAX_VALUE)
-                                        .addComponent(txtfonotrabajador))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
@@ -162,14 +165,27 @@ public class trabajadores extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtruttrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtnombretrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btguardartrabajador, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbtipotrabajador, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtfonotrabajador)
+                                    .addComponent(jScrollPane2)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(bteditar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btguardartrabajador)))
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
                             .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bteditartrabajador)
-                        .addContainerGap(84, Short.MAX_VALUE))))
+                        .addGap(84, 84, 84))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,13 +215,15 @@ public class trabajadores extends javax.swing.JInternalFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addComponent(btguardartrabajador))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btguardartrabajador)
+                            .addComponent(bteditar)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(bteditartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         txtbuscartrabajador.getAccessibleContext().setAccessibleName("");
@@ -300,7 +318,91 @@ public class trabajadores extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtbuscartrabajadorKeyPressed
 
+    private void bteditartrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteditartrabajadorActionPerformed
+        // TODO add your handling code here:
+        String nombreEditar = listatrabajadores.getSelectedValue().toString();
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
+        for (logica.trabajador aux : lista) {
+            txtnombretrabajador.setText(aux.getNombre());
+            txtruttrabajador.setText(aux.getRut());
+            rutEditar = aux.getRut();
+            txtfonotrabajador.setText(Integer.toString(aux.getTelefono()));
+            if(aux.getTipo() == 1){
+                cbtipotrabajador.setSelectedIndex(1);
+            }else{
+                if(aux.getTipo() == 2){
+                    cbtipotrabajador.setSelectedIndex(2);
+                }else{
+                    cbtipotrabajador.setSelectedIndex(3);
+                }
+            }
+            txtcomentarios.setText(aux.getComentarios());
+        }
+    }//GEN-LAST:event_bteditartrabajadorActionPerformed
+
+    private void bteditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteditarActionPerformed
+        // TODO add your handling code here:
+        if (txtnombretrabajador.getText().isEmpty() || txtruttrabajador.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
+        } else {
+            if (cbtipotrabajador.getSelectedItem().toString().equals("Seleccione...")) {
+                JOptionPane.showMessageDialog(null, "Por favor, seleccione el tipo de trabajador");
+            } else {
+                //insert
+                String nombre = txtnombretrabajador.getText().toString().toUpperCase();
+                String rut = txtruttrabajador.getText().toString();
+                int telefono = Integer.parseInt(txtfonotrabajador.getText().toString());
+                int tipo;
+                if (cbtipotrabajador.getSelectedItem().toString().equals("Maestro")) {
+                    tipo = 1;
+                } else {
+                    if (cbtipotrabajador.getSelectedItem().toString().equals("Ayudante")) {
+                        tipo = 2;
+                    } else {
+                        tipo = 3;
+                    }
+                }
+                String comentario = txtcomentarios.getText().toString();
+                double asistencia = 0;
+                int anticipo = 0;
+                boolean r = validarRut(rut);
+                if (r == true) {
+                    try {
+                        trabajador trab = new trabajador();
+                        trab.setNombre(nombre);
+                        trab.setRut(rut);
+                        trab.setTelefono(telefono);
+                        trab.setTipo(tipo);
+                        trab.setComentarios(comentario);
+                        trab.setAsistencia(asistencia);
+                        trab.setAnticipo(anticipo);
+                        new GestionTrabajadores().editar(trab, rutEditar);
+                        txtnombretrabajador.setText("");
+                        txtnombretrabajador.requestFocus();
+                        txtruttrabajador.setText("");
+                        txtfonotrabajador.setText("");
+                        txtcomentarios.setText("");
+                        cbtipotrabajador.setSelectedIndex(0);
+                        //Recargar lista
+                        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
+                        DefaultListModel model = new DefaultListModel();
+                        for (logica.trabajador aux : lista) {
+                            model.addElement(aux.getNombre());
+                        }
+                        listatrabajadores.setModel(model);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error al ingresar los datos!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El RUT no es válido!");
+                }
+
+            }
+        }
+    }//GEN-LAST:event_bteditarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bteditar;
     private javax.swing.JButton bteditartrabajador;
     private javax.swing.JButton btguardartrabajador;
     private javax.swing.JComboBox cbtipotrabajador;

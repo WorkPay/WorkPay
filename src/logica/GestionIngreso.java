@@ -47,10 +47,10 @@ public class GestionIngreso {
         try {
             PreparedStatement st = conex.getConector().prepareStatement(UPDATE);
             //Encriptación a MD5
-            //String md5 = DigestUtils.md5Hex(adm.getPass().toString());
+            String md5 = DigestUtils.md5Hex(adm.getPass().toString());
             st.setString(1, adm.getUsuario());
-            st.setString(2, adm.getPass());
-            //st.setString(2, md5);
+            //st.setString(2, adm.getPass());
+            st.setString(2, md5);
             st.executeUpdate();
             JOptionPane.showMessageDialog(null, "Nombre de Usuario y Contraseña editados correctamente");
         } catch (SQLException ex) {

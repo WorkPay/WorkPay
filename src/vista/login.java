@@ -163,9 +163,9 @@ public class login extends javax.swing.JFrame {
             user = log[0];
             pass = log[1];
         }
-        //Desencriptar MD5
+        String md5 = DigestUtils.md5Hex(txtpass.getText());
  
-        if((txtuser.getText().equals(user)) && (txtpass.getText().equals(pass))){
+        if((txtuser.getText().equals(user)) && (md5.equals(pass))){
           principal wp = new principal();
           wp.setVisible(true);
           wp.setExtendedState(wp.MAXIMIZED_BOTH);
