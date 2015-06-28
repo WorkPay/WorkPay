@@ -19,9 +19,21 @@ public class GestionTrabajadores {
     private static final String SELECT = "SELECT * FROM trabajador";
     private static final String SELECTFILTRO = "SELECT * FROM trabajador WHERE Nombre LIKE ?";
     private static final String UPDATE = "UPDATE trabajador SET Nombre=?, Rut=?, Telefono=?, Tipo=?, Comentarios=?, Asistencia=?, Anticipo=? WHERE Rut=?";
+    private static final String DELETE = "DELETE FROM trabajador WHERE Rut=?";
     private conexion conex = new conexion();
-    
-    
+
+    public void eliminar(String rut) {
+        conex.conectar();
+        try {
+            PreparedStatement st = conex.getConector().prepareStatement(DELETE);
+            st.setString(1, rut);
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Trabajador eliminado correctamente");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+
     public void editar(trabajador trab, String rut) {
         conex.conectar();
         try {
@@ -36,7 +48,6 @@ public class GestionTrabajadores {
             //traer RUT            
             st.setString(8, rut);
             st.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos de Trabajador editados correctamente");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -90,7 +101,7 @@ public class GestionTrabajadores {
     public ArrayList<trabajador> seleccionarFiltro(String nombre) {
         ArrayList<trabajador> lista = new ArrayList<>();
         conex.conectar();
-        String name = "%"+nombre+"%";
+        String name = "%" + nombre + "%";
         try {
             PreparedStatement st = conex.getConector().prepareStatement(SELECTFILTRO);
             st.setString(1, name);

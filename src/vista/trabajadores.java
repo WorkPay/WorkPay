@@ -16,15 +16,20 @@ import org.jdesktop.xswingx.PromptSupport;
  * @author Alexi
  */
 public class trabajadores extends javax.swing.JInternalFrame {
-String rutEditar = "";
+
+    String rutEditar = "";
+    String nombreEditar = "";
+
     /**
      * Creates new form trabajadores
      */
     public trabajadores() {
         initComponents();
-        
+
+        bteditar.setEnabled(false);
+
         PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
-        
+
 
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         DefaultListModel model = new DefaultListModel();
@@ -32,7 +37,7 @@ String rutEditar = "";
             model.addElement(aux.getNombre());
         }
         listatrabajadores.setModel(model);
-    }    
+    }
 
     public static boolean validarRut(String rut) {
         boolean validacion = false;
@@ -86,6 +91,7 @@ String rutEditar = "";
         bteditartrabajador = new javax.swing.JButton();
         txtbuscartrabajador = new javax.swing.JTextField();
         bteditar = new javax.swing.JButton();
+        bteliminartrabajador = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("administracion de trabajadores");
@@ -144,6 +150,13 @@ String rutEditar = "";
             }
         });
 
+        bteliminartrabajador.setText("Eliminar Trabajador");
+        bteliminartrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteliminartrabajadorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,7 +200,9 @@ String rutEditar = "";
                             .addComponent(jScrollPane1)
                             .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bteditartrabajador)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bteditartrabajador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bteliminartrabajador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -225,8 +240,11 @@ String rutEditar = "";
                         .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bteditartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bteditartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(bteliminartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         txtbuscartrabajador.getAccessibleContext().setAccessibleName("");
@@ -236,7 +254,7 @@ String rutEditar = "";
 
     private void btguardartrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btguardartrabajadorActionPerformed
         // TODO add your handling code here:
-        if (txtnombretrabajador.getText().isEmpty() || txtruttrabajador.getText().isEmpty()) {
+        if (txtnombretrabajador.getText().isEmpty() || txtruttrabajador.getText().isEmpty() || txtfonotrabajador.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
         } else {
             if (cbtipotrabajador.getSelectedItem().toString().equals("Seleccione...")) {
@@ -308,7 +326,7 @@ String rutEditar = "";
 
     private void txtbuscartrabajadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyTyped
         // TODO add your handling code here:
-        String nombre =  txtbuscartrabajador.getText().toUpperCase();
+        String nombre = txtbuscartrabajador.getText().toUpperCase();
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombre);
         DefaultListModel model = new DefaultListModel();
         for (logica.trabajador aux : lista) {
@@ -323,29 +341,35 @@ String rutEditar = "";
 
     private void bteditartrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteditartrabajadorActionPerformed
         // TODO add your handling code here:
-        String nombreEditar = listatrabajadores.getSelectedValue().toString();
-        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
-        for (logica.trabajador aux : lista) {
-            txtnombretrabajador.setText(aux.getNombre());
-            txtruttrabajador.setText(aux.getRut());
-            rutEditar = aux.getRut();
-            txtfonotrabajador.setText(Integer.toString(aux.getTelefono()));
-            if(aux.getTipo() == 1){
-                cbtipotrabajador.setSelectedIndex(1);
-            }else{
-                if(aux.getTipo() == 2){
-                    cbtipotrabajador.setSelectedIndex(2);
-                }else{
-                    cbtipotrabajador.setSelectedIndex(3);
+        if (listatrabajadores.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un trabajador de la lista para poder editar sus datos");
+        } else {
+            bteditar.setEnabled(true);
+            btguardartrabajador.setEnabled(false);
+            nombreEditar = listatrabajadores.getSelectedValue().toString();
+            ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
+            for (logica.trabajador aux : lista) {
+                txtnombretrabajador.setText(aux.getNombre());
+                txtruttrabajador.setText(aux.getRut());
+                rutEditar = aux.getRut();
+                txtfonotrabajador.setText(Integer.toString(aux.getTelefono()));
+                if (aux.getTipo() == 1) {
+                    cbtipotrabajador.setSelectedIndex(1);
+                } else {
+                    if (aux.getTipo() == 2) {
+                        cbtipotrabajador.setSelectedIndex(2);
+                    } else {
+                        cbtipotrabajador.setSelectedIndex(3);
+                    }
                 }
+                txtcomentarios.setText(aux.getComentarios());
             }
-            txtcomentarios.setText(aux.getComentarios());
         }
     }//GEN-LAST:event_bteditartrabajadorActionPerformed
 
     private void bteditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteditarActionPerformed
         // TODO add your handling code here:
-        if (txtnombretrabajador.getText().isEmpty() || txtruttrabajador.getText().isEmpty()) {
+        if (txtnombretrabajador.getText().isEmpty() || txtruttrabajador.getText().isEmpty() || txtfonotrabajador.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos");
         } else {
             if (cbtipotrabajador.getSelectedItem().toString().equals("Seleccione...")) {
@@ -368,6 +392,12 @@ String rutEditar = "";
                 String comentario = txtcomentarios.getText().toString();
                 double asistencia = 0;
                 int anticipo = 0;
+                ArrayList<logica.trabajador> lista1 = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
+                for (logica.trabajador aux : lista1) {
+                    asistencia = aux.getAsistencia();
+                    anticipo = aux.getAnticipo();
+                }
+
                 boolean r = validarRut(rut);
                 if (r == true) {
                     try {
@@ -380,6 +410,7 @@ String rutEditar = "";
                         trab.setAsistencia(asistencia);
                         trab.setAnticipo(anticipo);
                         new GestionTrabajadores().editar(trab, rutEditar);
+                        JOptionPane.showMessageDialog(null, "Datos de trabajador editados correctamente");
                         txtnombretrabajador.setText("");
                         txtnombretrabajador.requestFocus();
                         txtruttrabajador.setText("");
@@ -393,6 +424,8 @@ String rutEditar = "";
                             model.addElement(aux.getNombre());
                         }
                         listatrabajadores.setModel(model);
+                        bteditar.setEnabled(false);
+                        btguardartrabajador.setEnabled(true);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Error al ingresar los datos!");
                     }
@@ -404,9 +437,26 @@ String rutEditar = "";
         }
     }//GEN-LAST:event_bteditarActionPerformed
 
+    private void bteliminartrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteliminartrabajadorActionPerformed
+        // TODO add your handling code here:
+        nombreEditar = listatrabajadores.getSelectedValue().toString();
+        if (JOptionPane.showConfirmDialog(null, "¿Está seguro que desea eliminar al trabajador " + nombreEditar + "?") == JOptionPane.YES_OPTION) {
+            ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
+            for (logica.trabajador aux : lista) {
+                new GestionTrabajadores().eliminar(aux.getRut());
+            }
+            lista = new GestionTrabajadores().seleccionar();
+            DefaultListModel model = new DefaultListModel();
+            for (logica.trabajador aux : lista) {
+                model.addElement(aux.getNombre());
+            }
+            listatrabajadores.setModel(model);
+        }
+    }//GEN-LAST:event_bteliminartrabajadorActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bteditar;
     private javax.swing.JButton bteditartrabajador;
+    private javax.swing.JButton bteliminartrabajador;
     private javax.swing.JButton btguardartrabajador;
     private javax.swing.JComboBox cbtipotrabajador;
     private javax.swing.JLabel jLabel1;

@@ -58,7 +58,7 @@ public class vadmin extends javax.swing.JInternalFrame {
         jLabel1.setText("configuracion de administrador");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Editar Datos de Administrador");
+        jLabel2.setText("Editar Datos de Administrador de Sistema");
 
         jLabel3.setText("Nombre de usuario:");
 
@@ -129,7 +129,7 @@ public class vadmin extends javax.swing.JInternalFrame {
                     .addComponent(txtnewpass2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btguardaradmin)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();

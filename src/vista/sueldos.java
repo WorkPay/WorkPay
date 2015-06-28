@@ -6,7 +6,9 @@ package vista;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import logica.GestionTrabajadores;
+import logica.trabajador;
 import org.jdesktop.xswingx.PromptSupport;
 
 /**
@@ -114,6 +116,11 @@ public class sueldos extends javax.swing.JInternalFrame {
         jLabel7.setText("$");
 
         btanticipo.setText("Anticipo");
+        btanticipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btanticipoActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Trabajador:");
 
@@ -124,6 +131,11 @@ public class sueldos extends javax.swing.JInternalFrame {
         jLabel10.setText("$");
 
         btdaranticipo.setText("Dar Anticipo");
+        btdaranticipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btdaranticipoActionPerformed(evt);
+            }
+        });
 
         btpagarsueldo.setText("Pagar Sueldo");
         btpagarsueldo.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +237,7 @@ public class sueldos extends javax.swing.JInternalFrame {
                         .addComponent(btcalcularsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113)
                         .addComponent(btanticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,15 +245,32 @@ public class sueldos extends javax.swing.JInternalFrame {
 
     private void btcalcularsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcalcularsueldoActionPerformed
         // TODO add your handling code here:
+        btdaranticipo.setEnabled(false);
+        btpagarsueldo.setEnabled(true);
+        if (listatrabajadores.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un trabajador de la lista para poder calcular su sueldo");
+        } else {
+            String nombreEditar = listatrabajadores.getSelectedValue().toString();
+            ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
+            for (logica.trabajador aux : lista) {
+                lbltrabajador.setText(aux.getNombre());
+                lbldiastrabajados.setText(Double.toString(aux.getAsistencia()));
+                lblanticipo.setText(Integer.toString(aux.getAnticipo()));
+                //TRAER EL SUELDO
+                double sueldo = /*SUELDO x ASISTENCIA +*/ aux.getAnticipo();
+                lblsueldo.setText(Double.toString(sueldo));
+            }
+        }
+        
     }//GEN-LAST:event_btcalcularsueldoActionPerformed
-
+    
     private void btpagarsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpagarsueldoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btpagarsueldoActionPerformed
-
+    
     private void txtbuscartrabajadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyTyped
         // TODO add your handling code here:
-        String nombre =  txtbuscartrabajador.getText().toUpperCase();
+        String nombre = txtbuscartrabajador.getText().toUpperCase();
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombre);
         DefaultListModel model = new DefaultListModel();
         for (logica.trabajador aux : lista) {
@@ -249,7 +278,50 @@ public class sueldos extends javax.swing.JInternalFrame {
         }
         listatrabajadores.setModel(model);
     }//GEN-LAST:event_txtbuscartrabajadorKeyTyped
-
+    
+    private void btanticipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btanticipoActionPerformed
+        // TODO add your handling code here:
+        btpagarsueldo.setEnabled(false);
+        btdaranticipo.setEnabled(true);
+        if (listatrabajadores.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un trabajador de la lista para poder darle un anticipo");
+        } else {
+            String nombreEditar = listatrabajadores.getSelectedValue().toString();
+            ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
+            for (logica.trabajador aux : lista) {
+                if (aux.getAnticipo() == 0) {
+                    lbltrabajador1.setText(aux.getNombre());
+                } else {
+                    if (JOptionPane.showConfirmDialog(null, "Este trabajador ya posee un anticipo, ¿desea editar el anticipo?") == JOptionPane.YES_OPTION) {
+                        lbltrabajador1.setText(aux.getNombre());
+                        txtanticipo.setText(Integer.toString(aux.getAnticipo()));
+                    }
+                }
+                
+            }
+        }
+    }//GEN-LAST:event_btanticipoActionPerformed
+    
+    private void btdaranticipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdaranticipoActionPerformed
+        // TODO add your handling code here:
+        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(lbltrabajador1.getText().toString());
+        for (logica.trabajador aux : lista) {   
+            trabajador trab = new trabajador();
+            trab.setNombre(aux.getNombre());
+            trab.setRut(aux.getRut());
+            trab.setTelefono(aux.getTelefono());
+            trab.setTipo(aux.getTipo());
+            trab.setComentarios(aux.getComentarios());
+            trab.setAsistencia(aux.getAsistencia());
+            trab.setAnticipo(Integer.parseInt(txtanticipo.getText().toString()));
+            if(JOptionPane.showConfirmDialog
+            (null, "Desea dar $"+txtanticipo.getText().toString()+" de anticipo al trabajador: "+aux.getNombre()) == JOptionPane.YES_OPTION){            
+            new GestionTrabajadores().editar(trab, aux.getRut());
+            txtanticipo.setText("");
+            lbltrabajador1.setText("Nombre...");
+            }
+        }
+    }//GEN-LAST:event_btdaranticipoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btanticipo;
     private javax.swing.JButton btcalcularsueldo;
