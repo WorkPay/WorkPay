@@ -29,6 +29,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
         bteditar.setEnabled(false);
 
         PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
+        PromptSupport.setPrompt("Ej: 11111111-1", txtruttrabajador);
 
 
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();

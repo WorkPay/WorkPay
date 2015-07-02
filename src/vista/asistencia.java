@@ -6,9 +6,12 @@ package vista;
 
 import com.itextpdf.text.pdf.ColumnText;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.GestionAsistencia;
 import logica.GestionTrabajadores;
 
 /**
@@ -17,11 +20,21 @@ import logica.GestionTrabajadores;
  */
 public class asistencia extends javax.swing.JInternalFrame {
 
+    public boolean bandera = false;
+    public Date fechita = new Date();
+
     /**
      * Creates new form workpay
      */
     public asistencia() {
         initComponents();
+
+        new GestionAsistencia().fecha();
+
+        ArrayList<logica.fecha> listafecha = new GestionAsistencia().traerfecha();
+        for (logica.fecha aux : listafecha) {
+            fechita = aux.getFecha();
+        }
 
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         //DefaultTableModel model = new DefaultTableModel();
@@ -29,7 +42,7 @@ public class asistencia extends javax.swing.JInternalFrame {
         for (logica.trabajador aux : lista) {
             i++;
             TBasistenciatrabajadores.setValueAt(aux.getNombre(), i, 2);
-        }      
+        }
 
     }
 
@@ -47,6 +60,7 @@ public class asistencia extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TBasistenciatrabajadores = new javax.swing.JTable();
         btguardarasistencia = new javax.swing.JButton();
+        bteditarasistencia = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -56,6 +70,56 @@ public class asistencia extends javax.swing.JInternalFrame {
         TBasistenciatrabajadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, ""},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -126,6 +190,13 @@ public class asistencia extends javax.swing.JInternalFrame {
         TBasistenciatrabajadores.getColumnModel().getColumn(2).setPreferredWidth(50);
 
         btguardarasistencia.setText("Registrar Asistencia");
+        btguardarasistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btguardarasistenciaActionPerformed(evt);
+            }
+        });
+
+        bteditarasistencia.setText("Editar Asistencia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,11 +205,14 @@ public class asistencia extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btguardarasistencia)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btguardarasistencia)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bteditarasistencia)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -150,14 +224,50 @@ public class asistencia extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btguardarasistencia)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btguardarasistencia)
+                    .addComponent(bteditarasistencia))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btguardarasistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btguardarasistenciaActionPerformed
+        // TODO add your handling code here
+        int año = Calendar.YEAR;
+        int mes = Calendar.MONTH;
+        int dia = Calendar.DAY_OF_MONTH;
+        java.sql.Date fechahoy = new java.sql.Date(año, mes, dia);
+        if (fechita.toString().equals(fechahoy.toString())) {
+            JOptionPane.showMessageDialog(null, "La asistencia ya se registró hoy, para editar la asistencia de los trabjadores pulse el botón 'Editar'");
+        } else {
+            for (int i = 0; i < TBasistenciatrabajadores.getRowCount(); i++) {
+                double asis = 0;
+                if (TBasistenciatrabajadores.getValueAt(i, 2) != null) {
+                    if (TBasistenciatrabajadores.getValueAt(i, 0) == true) {
+                        asis += 0.5;
+                    }
+                    if (TBasistenciatrabajadores.getValueAt(i, 1) == true) {
+                        asis += 0.5;
+                    }
+                    //Registrar asistencia
+                    try {
+                        new GestionAsistencia().sumarAsistencia(Double.toString(asis), TBasistenciatrabajadores.getValueAt(i, 2).toString());
+                        bandera = true;
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                }
+            }
+            if (bandera == true) {
+                JOptionPane.showMessageDialog(null, "Asistencia del dia registrada correctamente");
+            }
+        }
+    }//GEN-LAST:event_btguardarasistenciaActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TBasistenciatrabajadores;
+    private javax.swing.JButton bteditarasistencia;
     private javax.swing.JButton btguardarasistencia;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
