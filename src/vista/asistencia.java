@@ -29,7 +29,7 @@ public class asistencia extends javax.swing.JInternalFrame {
     public asistencia() {
         initComponents();
 
-        new GestionAsistencia().fecha();
+        
 
         ArrayList<logica.fecha> listafecha = new GestionAsistencia().traerfecha();
         for (logica.fecha aux : listafecha) {
@@ -235,6 +235,10 @@ public class asistencia extends javax.swing.JInternalFrame {
 
     private void btguardarasistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btguardarasistenciaActionPerformed
         // TODO add your handling code here
+        ArrayList<logica.fecha> listafecha = new GestionAsistencia().traerfecha();
+        for (logica.fecha aux : listafecha) {
+            fechita = aux.getFecha();
+        }
         int año = Calendar.YEAR;
         int mes = Calendar.MONTH;
         int dia = Calendar.DAY_OF_MONTH;
@@ -262,6 +266,7 @@ public class asistencia extends javax.swing.JInternalFrame {
             }
             if (bandera == true) {
                 JOptionPane.showMessageDialog(null, "Asistencia del dia registrada correctamente");
+                new GestionAsistencia().fecha();
             }
         }
     }//GEN-LAST:event_btguardarasistenciaActionPerformed
