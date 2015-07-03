@@ -29,7 +29,7 @@ public class asistencia extends javax.swing.JInternalFrame {
     public asistencia() {
         initComponents();
 
-        
+        bteditarasistencia.setEnabled(false);
 
         ArrayList<logica.fecha> listafecha = new GestionAsistencia().traerfecha();
         for (logica.fecha aux : listafecha) {
@@ -197,6 +197,11 @@ public class asistencia extends javax.swing.JInternalFrame {
         });
 
         bteditarasistencia.setText("Editar Asistencia");
+        bteditarasistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteditarasistenciaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,7 +210,7 @@ public class asistencia extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -221,9 +226,9 @@ public class asistencia extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btguardarasistencia)
                     .addComponent(bteditarasistencia))
@@ -244,7 +249,7 @@ public class asistencia extends javax.swing.JInternalFrame {
         int dia = Calendar.DAY_OF_MONTH;
         java.sql.Date fechahoy = new java.sql.Date(año, mes, dia);
         if (fechita.toString().equals(fechahoy.toString())) {
-            JOptionPane.showMessageDialog(null, "La asistencia ya se registró hoy, para editar la asistencia de los trabjadores pulse el botón 'Editar'");
+            JOptionPane.showMessageDialog(null, "La asistencia ya se registró hoy, para editar la asistencia de los trabjadores pulse el botón 'Editar Asistencia'");
         } else {
             for (int i = 0; i < TBasistenciatrabajadores.getRowCount(); i++) {
                 double asis = 0;
@@ -267,9 +272,41 @@ public class asistencia extends javax.swing.JInternalFrame {
             if (bandera == true) {
                 JOptionPane.showMessageDialog(null, "Asistencia del dia registrada correctamente");
                 new GestionAsistencia().fecha();
+                btguardarasistencia.setEnabled(false);
+                TBasistenciatrabajadores.enable(false);
+                bteditarasistencia.setEnabled(true);
             }
         }
     }//GEN-LAST:event_btguardarasistenciaActionPerformed
+
+    private void bteditarasistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteditarasistenciaActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea editar la asistencia de hoy?") == JOptionPane.YES_OPTION) {
+            bteditarasistencia.setEnabled(false);
+            btguardarasistencia.setEnabled(true);
+            TBasistenciatrabajadores.enable(true);
+            new GestionAsistencia().fechaCero();
+            for (int i = 0; i < TBasistenciatrabajadores.getRowCount(); i++) {
+                double asis = 0;
+                if (TBasistenciatrabajadores.getValueAt(i, 2) != null) {
+                    if (TBasistenciatrabajadores.getValueAt(i, 0) == true) {
+                        asis -= 0.5;
+                    }
+                    if (TBasistenciatrabajadores.getValueAt(i, 1) == true) {
+                        asis -= 0.5;
+                    }
+                    //Registrar asistencia
+                    try {
+                        new GestionAsistencia().sumarAsistencia(Double.toString(asis), TBasistenciatrabajadores.getValueAt(i, 2).toString());
+                        bandera = true;
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                }
+            }
+
+        }
+    }//GEN-LAST:event_bteditarasistenciaActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TBasistenciatrabajadores;
     private javax.swing.JButton bteditarasistencia;

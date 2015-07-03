@@ -7,6 +7,8 @@ package vista;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import logica.GestionAsistencia;
+import logica.GestionSueldo;
 import logica.GestionTrabajadores;
 import logica.trabajador;
 import org.jdesktop.xswingx.PromptSupport;
@@ -22,9 +24,9 @@ public class sueldos extends javax.swing.JInternalFrame {
      */
     public sueldos() {
         initComponents();
-        
+
         PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
-        
+
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         DefaultListModel model = new DefaultListModel();
         for (logica.trabajador aux : lista) {
@@ -257,17 +259,40 @@ public class sueldos extends javax.swing.JInternalFrame {
                 lbldiastrabajados.setText(Double.toString(aux.getAsistencia()));
                 lblanticipo.setText(Integer.toString(aux.getAnticipo()));
                 //TRAER EL SUELDO
-                double sueldo = /*SUELDO x ASISTENCIA +*/ aux.getAnticipo();
-                lblsueldo.setText(Double.toString(sueldo));
+                int sueldo = 1;
+                double asistencia = aux.getAsistencia();
+                ArrayList<logica.tipo_trabajador> listatipo = new GestionSueldo().seleccionar(aux.getTipo());
+                for (logica.tipo_trabajador aux1 : listatipo) {
+                    sueldo = aux1.getSueldo();
+                }
+                double sueldototal = (sueldo * asistencia) - aux.getAnticipo();
+                lblsueldo.setText(Double.toString(sueldototal));
             }
         }
-        
+
     }//GEN-LAST:event_btcalcularsueldoActionPerformed
-    
+
     private void btpagarsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpagarsueldoActionPerformed
         // TODO add your handling code here:
+        double i = 0;
+        if (Double.parseDouble(lblsueldo.getText().toString()) > i) {
+            //volver la asistencia a 0
+            if (JOptionPane.showConfirmDialog(null, "¿Desea pagar $" + lblsueldo.getText().toString() + " de sueldo, correspondiente al trabajador " + lbltrabajador.getText().toString() + "?") == JOptionPane.YES_OPTION) {
+                new GestionAsistencia().asistenciaCero(lbltrabajador.getText().toString());
+                lbltrabajador.setText("Nombre...");
+                lbldiastrabajados.setText("0");
+                lblanticipo.setText("0");
+                lblsueldo.setText("0");
+            }
+        } else {
+            if (Double.parseDouble(lblsueldo.getText().toString()) == i) {
+                JOptionPane.showMessageDialog(null, "El trabajador "+lbltrabajador.getText().toString()+" no posee sueldo acomulado");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede pagar el sueldo a este trabajador ya que posee una deuda por Anticipo");
+            }
+        }
     }//GEN-LAST:event_btpagarsueldoActionPerformed
-    
+
     private void txtbuscartrabajadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyTyped
         // TODO add your handling code here:
         String nombre = txtbuscartrabajador.getText().toUpperCase();
@@ -278,7 +303,7 @@ public class sueldos extends javax.swing.JInternalFrame {
         }
         listatrabajadores.setModel(model);
     }//GEN-LAST:event_txtbuscartrabajadorKeyTyped
-    
+
     private void btanticipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btanticipoActionPerformed
         // TODO add your handling code here:
         btpagarsueldo.setEnabled(false);
@@ -297,15 +322,15 @@ public class sueldos extends javax.swing.JInternalFrame {
                         txtanticipo.setText(Integer.toString(aux.getAnticipo()));
                     }
                 }
-                
+
             }
         }
     }//GEN-LAST:event_btanticipoActionPerformed
-    
+
     private void btdaranticipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdaranticipoActionPerformed
         // TODO add your handling code here:
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(lbltrabajador1.getText().toString());
-        for (logica.trabajador aux : lista) {   
+        for (logica.trabajador aux : lista) {
             trabajador trab = new trabajador();
             trab.setNombre(aux.getNombre());
             trab.setRut(aux.getRut());
@@ -314,11 +339,10 @@ public class sueldos extends javax.swing.JInternalFrame {
             trab.setComentarios(aux.getComentarios());
             trab.setAsistencia(aux.getAsistencia());
             trab.setAnticipo(Integer.parseInt(txtanticipo.getText().toString()));
-            if(JOptionPane.showConfirmDialog
-            (null, "Desea dar $"+txtanticipo.getText().toString()+" de anticipo al trabajador: "+aux.getNombre()) == JOptionPane.YES_OPTION){            
-            new GestionTrabajadores().editar(trab, aux.getRut());
-            txtanticipo.setText("");
-            lbltrabajador1.setText("Nombre...");
+            if (JOptionPane.showConfirmDialog(null, "Desea dar $" + txtanticipo.getText().toString() + " de anticipo al trabajador: " + aux.getNombre()) == JOptionPane.YES_OPTION) {
+                new GestionTrabajadores().editar(trab, aux.getRut());
+                txtanticipo.setText("");
+                lbltrabajador1.setText("Nombre...");
             }
         }
     }//GEN-LAST:event_btdaranticipoActionPerformed
