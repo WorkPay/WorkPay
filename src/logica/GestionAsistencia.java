@@ -34,7 +34,7 @@ public class GestionAsistencia {
         }
         conex.desconectar();
     }
-    
+
     public ArrayList<fecha> traerfecha() {
         ArrayList<fecha> lista = new ArrayList<>();
         conex.conectar();
@@ -53,15 +53,16 @@ public class GestionAsistencia {
         conex.desconectar();
         return lista;
     }
-    
+
     public void fecha() {
         conex.conectar();
         try {
             PreparedStatement st = conex.getConector().prepareStatement(updateFECHA);
-            int año = Calendar.YEAR;
-            int mes = Calendar.MONTH;
-            int dia = Calendar.DAY_OF_MONTH;
-            Date fecha = new Date(año, mes, dia);
+            Calendar actual = Calendar.getInstance();
+            int ano = 2015;
+            int mes = actual.get(Calendar.MONTH);
+            int dia = actual.get(Calendar.DAY_OF_MONTH);
+            Date fecha = new Date(ano, mes, dia);
             st.setString(1, fecha.toString());
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -69,10 +70,11 @@ public class GestionAsistencia {
         }
         conex.desconectar();
     }
+
     public void fechaCero() {
         conex.conectar();
         try {
-            PreparedStatement st = conex.getConector().prepareStatement(fecha0);            
+            PreparedStatement st = conex.getConector().prepareStatement(fecha0);
             st.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());

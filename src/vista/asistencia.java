@@ -43,8 +43,9 @@ public class asistencia extends javax.swing.JInternalFrame {
         int i = -1;
         int j = 0;
         for (logica.trabajador aux : lista) {
-            i++;            j++;           
-            TBasistenciatrabajadores.setValueAt(aux.getNombre(), i, 2);            
+            i++;
+            j++;
+            TBasistenciatrabajadores.setValueAt(aux.getNombre(), i, 2);
         }
         model.setRowCount(j);
         TBasistenciatrabajadores.setModel(model);
@@ -248,10 +249,11 @@ public class asistencia extends javax.swing.JInternalFrame {
         for (logica.fecha aux : listafecha) {
             fechita = aux.getFecha();
         }
-        int año = Calendar.YEAR;
-        int mes = Calendar.MONTH;
-        int dia = Calendar.DAY_OF_MONTH;
-        java.sql.Date fechahoy = new java.sql.Date(año, mes, dia);
+        Calendar actual = Calendar.getInstance();
+        int ano = 2015;
+        int mes = actual.get(Calendar.MONTH);
+        int dia = actual.get(Calendar.DAY_OF_MONTH);
+        java.sql.Date fechahoy = new java.sql.Date(ano, mes, dia);
         if (fechita.toString().equals(fechahoy.toString())) {
             JOptionPane.showMessageDialog(null, "La asistencia ya se registró hoy, para editar la asistencia de los trabjadores pulse el botón 'Editar Asistencia'");
         } else {

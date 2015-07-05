@@ -11,10 +11,10 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -250,10 +250,11 @@ public class informes extends javax.swing.JInternalFrame {
                     anticipo = Integer.toString(aux.getAnticipo());
                     comentarios = aux.getComentarios();
                 }
-                int año = Calendar.YEAR;
-                int mes = Calendar.MONTH;
-                int dia = Calendar.DAY_OF_MONTH;
-                java.sql.Date fechahoy = new java.sql.Date(año, mes, dia);
+                Calendar actual = Calendar.getInstance();
+                int ano = 2015;
+                int mes = actual.get(Calendar.MONTH);
+                int dia = actual.get(Calendar.DAY_OF_MONTH);
+                java.sql.Date fechahoy = new java.sql.Date(ano, mes, dia);
                 String date = fechahoy.toString();
                 archivo = new FileOutputStream("C:/Informes/Informe " + nombre + " " + date + ".pdf");
                 Document documento = new Document();
