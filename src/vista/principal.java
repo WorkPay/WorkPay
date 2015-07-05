@@ -7,6 +7,7 @@ package vista;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -196,7 +197,9 @@ public class principal extends javax.swing.JFrame {
 
     private void btsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsalirActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        if (JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea salir de WorkPay? Si cierra la aplicación y ya registró la asistencia el dia de hoy, no podrá volver a editarla.") == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btsalirActionPerformed
 
     private void btadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btadminActionPerformed

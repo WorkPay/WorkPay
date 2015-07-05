@@ -10,7 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import logica.GestionAsistencia;
 import logica.GestionTrabajadores;
 
@@ -37,13 +39,15 @@ public class asistencia extends javax.swing.JInternalFrame {
         }
 
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
-        //DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = (DefaultTableModel) TBasistenciatrabajadores.getModel();
         int i = -1;
+        int j = 0;
         for (logica.trabajador aux : lista) {
-            i++;
-            TBasistenciatrabajadores.setValueAt(aux.getNombre(), i, 2);
+            i++;            j++;           
+            TBasistenciatrabajadores.setValueAt(aux.getNombre(), i, 2);            
         }
-
+        model.setRowCount(j);
+        TBasistenciatrabajadores.setModel(model);
     }
 
     /**

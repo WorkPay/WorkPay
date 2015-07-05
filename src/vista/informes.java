@@ -11,8 +11,10 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Font;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -31,9 +33,9 @@ public class informes extends javax.swing.JInternalFrame {
      */
     public informes() {
         initComponents();
-        
+
         PromptSupport.setPrompt("Buscar trabajador...", txtbuscartrabajador);
-        
+
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionar();
         DefaultListModel model = new DefaultListModel();
         for (logica.trabajador aux : lista) {
@@ -56,6 +58,21 @@ public class informes extends javax.swing.JInternalFrame {
         listatrabajadores = new javax.swing.JList();
         txtbuscartrabajador = new javax.swing.JTextField();
         btpdf = new javax.swing.JButton();
+        btverinfo = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblasistencia = new javax.swing.JLabel();
+        lbltipo = new javax.swing.JLabel();
+        lblanticipo = new javax.swing.JLabel();
+        lblcomentarios = new javax.swing.JLabel();
+        lbltelefono = new javax.swing.JLabel();
+        lblrut = new javax.swing.JLabel();
+        lblnombre = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("generacion de informes");
@@ -82,6 +99,41 @@ public class informes extends javax.swing.JInternalFrame {
             }
         });
 
+        btverinfo.setText("Ver Información");
+        btverinfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btverinfoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Nombre:");
+
+        jLabel3.setText("RUT:");
+
+        jLabel4.setText("Telefono:");
+
+        jLabel5.setText("Cargo:");
+
+        jLabel6.setText("Días trabajados:");
+
+        jLabel7.setText("Anticipo: $");
+
+        jLabel8.setText("Comentarios:");
+
+        lblasistencia.setText("-");
+
+        lbltipo.setText("-");
+
+        lblanticipo.setText("-");
+
+        lblcomentarios.setText("-");
+
+        lbltelefono.setText("-");
+
+        lblrut.setText("-");
+
+        lblnombre.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,9 +145,29 @@ public class informes extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btpdf))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btpdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btverinfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblnombre)
+                            .addComponent(lblrut)
+                            .addComponent(lbltelefono)
+                            .addComponent(lblcomentarios)
+                            .addComponent(lblanticipo)
+                            .addComponent(lbltipo)
+                            .addComponent(lblasistencia)))
                     .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,8 +179,40 @@ public class informes extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btpdf, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btpdf, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(lblnombre))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(lblrut))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btverinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(lbltelefono)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(lbltipo))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(lblasistencia))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(lblanticipo))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lblcomentarios))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,30 +220,75 @@ public class informes extends javax.swing.JInternalFrame {
 
     private void btpdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btpdfActionPerformed
         // TODO add your handling code here:
-        FileOutputStream archivo;
-        try {
-            archivo = new FileOutputStream("C:/Informes/Informe.pdf");
-            Document documento = new Document();
-            PdfWriter.getInstance(documento, archivo);
-            documento.open();
-            documento.add(new Paragraph("Hola Mundo!"));
-            documento.add(new Paragraph("He creado un documento en pdf"));
-            documento.add(new Paragraph("El cual debería llenar con información relevante..."));
-            documento.add(new Paragraph("Pero no :)"));
-            documento.close();
-            JOptionPane.showMessageDialog(null, "Informe creado exitosamente");
-            Process p = Runtime.getRuntime().exec("explorer.exe C:\\Informes");
-        } catch (FileNotFoundException | DocumentException ex) {
-            Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error al generar el Informe PDF!");
-        } catch (IOException ex) {
-            Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
+        if (listatrabajadores.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un trabajador de la lista para poder generar un informe PDF");
+        } else {
+            FileOutputStream archivo;
+            try {
+                ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(listatrabajadores.getSelectedValue().toString());
+                String nombre = "";
+                String rut = "";
+                String telefono = "";
+                String cargo = "";
+                String asistencia = "";
+                String anticipo = "";
+                String comentarios = "";
+                for (logica.trabajador aux : lista) {
+                    nombre = aux.getNombre();
+                    rut = aux.getRut();
+                    telefono = Integer.toString(aux.getTelefono());
+                    if (aux.getTipo() == 1) {
+                        cargo = "Maestro";
+                    } else {
+                        if (aux.getTipo() == 2) {
+                            cargo = "Ayudante";
+                        } else {
+                            cargo = "Principiante";
+                        }
+                    }
+                    asistencia = Double.toString(aux.getAsistencia());
+                    anticipo = Integer.toString(aux.getAnticipo());
+                    comentarios = aux.getComentarios();
+                }
+                int año = Calendar.YEAR;
+                int mes = Calendar.MONTH;
+                int dia = Calendar.DAY_OF_MONTH;
+                java.sql.Date fechahoy = new java.sql.Date(año, mes, dia);
+                String date = fechahoy.toString();
+                archivo = new FileOutputStream("C:/Informes/Informe " + nombre + " " + date + ".pdf");
+                Document documento = new Document();
+                PdfWriter.getInstance(documento, archivo);
+                documento.open();
+                documento.addAuthor("WorkPay");
+                documento.addTitle("WorkPay");  
+                documento.add(new Paragraph("Nombre: " + nombre));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("RUT: " + rut));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Teléfono: " + telefono));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Cargo: " + cargo));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Días trabajados: " + asistencia));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Anticipo: $" + anticipo));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Comentarios: " + comentarios));
+                documento.close();
+                JOptionPane.showMessageDialog(null, "Informe creado exitosamente");
+                Process p = Runtime.getRuntime().exec("explorer.exe C:\\Informes");
+            } catch (FileNotFoundException | DocumentException ex) {
+                Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al generar el Informe PDF!");
+            } catch (IOException ex) {
+                Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btpdfActionPerformed
 
     private void txtbuscartrabajadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscartrabajadorKeyTyped
         // TODO add your handling code here:
-        String nombre =  txtbuscartrabajador.getText().toUpperCase();
+        String nombre = txtbuscartrabajador.getText().toUpperCase();
         ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(nombre);
         DefaultListModel model = new DefaultListModel();
         for (logica.trabajador aux : lista) {
@@ -148,10 +297,50 @@ public class informes extends javax.swing.JInternalFrame {
         listatrabajadores.setModel(model);
     }//GEN-LAST:event_txtbuscartrabajadorKeyTyped
 
+    private void btverinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btverinfoActionPerformed
+        // TODO add your handling code here:
+        if (listatrabajadores.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un trabajador de la lista para poder ver su información");
+        } else {
+            ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(listatrabajadores.getSelectedValue().toString());
+            for (logica.trabajador aux : lista) {
+                lblanticipo.setText(Integer.toString(aux.getAnticipo()));
+                lblasistencia.setText(Double.toString(aux.getAsistencia()));
+                lblcomentarios.setText(aux.getComentarios());
+                lblnombre.setText(aux.getNombre());
+                lblrut.setText(aux.getRut());
+                lbltelefono.setText(Integer.toString(aux.getTelefono()));
+                if (aux.getTipo() == 1) {
+                    lbltipo.setText("Maestro");
+                } else {
+                    if (aux.getTipo() == 2) {
+                        lbltipo.setText("Ayudante");
+                    } else {
+                        lbltipo.setText("Principiante");
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_btverinfoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btpdf;
+    private javax.swing.JButton btverinfo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblanticipo;
+    private javax.swing.JLabel lblasistencia;
+    private javax.swing.JLabel lblcomentarios;
+    private javax.swing.JLabel lblnombre;
+    private javax.swing.JLabel lblrut;
+    private javax.swing.JLabel lbltelefono;
+    private javax.swing.JLabel lbltipo;
     private javax.swing.JList listatrabajadores;
     private javax.swing.JTextField txtbuscartrabajador;
     // End of variables declaration//GEN-END:variables
