@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import logica.GestionAsistencia;
@@ -245,6 +246,7 @@ public class asistencia extends javax.swing.JInternalFrame {
 
     private void btguardarasistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btguardarasistenciaActionPerformed
         // TODO add your handling code here
+
         ArrayList<logica.fecha> listafecha = new GestionAsistencia().traerfecha();
         for (logica.fecha aux : listafecha) {
             fechita = aux.getFecha();

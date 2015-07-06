@@ -4,6 +4,10 @@
  */
 package vista;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import logica.GestionSueldo;
+
 /**
  *
  * @author Alexi
@@ -15,6 +19,19 @@ public class gestionsueldo extends javax.swing.JInternalFrame {
      */
     public gestionsueldo() {
         initComponents();
+
+        ArrayList<logica.tipo_trabajador> listatipo1 = new GestionSueldo().seleccionar(1);
+        for (logica.tipo_trabajador aux1 : listatipo1) {
+            txtsueldomaestro.setText(Integer.toString(aux1.getSueldo()));
+        }
+        ArrayList<logica.tipo_trabajador> listatipo2 = new GestionSueldo().seleccionar(2);
+        for (logica.tipo_trabajador aux2 : listatipo2) {
+            txtsueldoayudante.setText(Integer.toString(aux2.getSueldo()));
+        }
+        ArrayList<logica.tipo_trabajador> listatipo3 = new GestionSueldo().seleccionar(3);
+        for (logica.tipo_trabajador aux3 : listatipo3) {
+            txtsueldoprincipiante.setText(Integer.toString(aux3.getSueldo()));
+        }
     }
 
     /**
@@ -27,30 +44,139 @@ public class gestionsueldo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtsueldomaestro = new javax.swing.JTextField();
+        txtsueldoayudante = new javax.swing.JTextField();
+        txtsueldoprincipiante = new javax.swing.JTextField();
+        bteditarsueldo = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("gestion de sueldos");
+
+        jLabel2.setText("Maestro");
+
+        jLabel3.setText("Ayudante");
+
+        jLabel4.setText("Principiante");
+
+        bteditarsueldo.setText("Editar Sueldos");
+        bteditarsueldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteditarsueldoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("$");
+
+        jLabel6.setText("$");
+
+        jLabel7.setText("$");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Editar sueldos por día de trabajo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtsueldoayudante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                    .addComponent(txtsueldomaestro, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtsueldoprincipiante))
+                                .addGap(18, 18, 18)
+                                .addComponent(bteditarsueldo))
+                            .addComponent(jLabel8)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtsueldomaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtsueldoayudante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bteditarsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtsueldoprincipiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bteditarsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteditarsueldoActionPerformed
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea modificar los sueldos?") == JOptionPane.YES_OPTION) {
+            //editar tipo_trabajador, sueldo
+            new GestionSueldo().updateSueldo(txtsueldomaestro.getText().toString(), "1");
+            new GestionSueldo().updateSueldo(txtsueldoayudante.getText().toString(), "2");
+            new GestionSueldo().updateSueldo(txtsueldoprincipiante.getText().toString(), "3");
+            ArrayList<logica.tipo_trabajador> listatipo1 = new GestionSueldo().seleccionar(1);
+            for (logica.tipo_trabajador aux1 : listatipo1) {
+                txtsueldomaestro.setText(Integer.toString(aux1.getSueldo()));
+            }
+            ArrayList<logica.tipo_trabajador> listatipo2 = new GestionSueldo().seleccionar(2);
+            for (logica.tipo_trabajador aux2 : listatipo2) {
+                txtsueldoayudante.setText(Integer.toString(aux2.getSueldo()));
+            }
+            ArrayList<logica.tipo_trabajador> listatipo3 = new GestionSueldo().seleccionar(3);
+            for (logica.tipo_trabajador aux3 : listatipo3) {
+                txtsueldoprincipiante.setText(Integer.toString(aux3.getSueldo()));
+            }
+
+            JOptionPane.showMessageDialog(null, "Sueldos editados correctamente");
+        }
+    }//GEN-LAST:event_bteditarsueldoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bteditarsueldo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField txtsueldoayudante;
+    private javax.swing.JTextField txtsueldomaestro;
+    private javax.swing.JTextField txtsueldoprincipiante;
     // End of variables declaration//GEN-END:variables
 }

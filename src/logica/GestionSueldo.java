@@ -17,7 +17,22 @@ import javax.swing.JOptionPane;
  */
 public class GestionSueldo {
     private static final String SELECT = "SELECT * FROM tipo_trabajador WHERE ID = ?";
+    private static final String UPDATE = "UPDATE tipo_trabajador SET Sueldo=? WHERE ID=?";
     private conexion conex = new conexion();
+    
+    
+    public void updateSueldo(String sueldo, String id) {
+        conex.conectar();
+        try {
+            PreparedStatement st = conex.getConector().prepareStatement(UPDATE);          
+            st.setString(1, sueldo);            
+            st.setString(2, id);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        conex.desconectar();
+    }
     
        public ArrayList<tipo_trabajador> seleccionar(int id) {
         ArrayList<tipo_trabajador> lista = new ArrayList<>();
