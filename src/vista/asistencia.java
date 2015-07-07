@@ -283,8 +283,6 @@ public class asistencia extends javax.swing.JInternalFrame {
                             }
                             new GestionAsistencia().actualizarSueldo(aux.getNombre(), Double.toString(sueldo));
                         }
-
-
                         bandera = true;
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
