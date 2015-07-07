@@ -259,14 +259,14 @@ public class sueldos extends javax.swing.JInternalFrame {
                 lbldiastrabajados.setText(Double.toString(aux.getAsistencia()));
                 lblanticipo.setText(Integer.toString(aux.getAnticipo()));
                 //TRAER EL SUELDO
-                int sueldo = 1;
-                double asistencia = aux.getAsistencia();
-                ArrayList<logica.tipo_trabajador> listatipo = new GestionSueldo().seleccionar(aux.getTipo());
-                for (logica.tipo_trabajador aux1 : listatipo) {
-                    sueldo = aux1.getSueldo();
-                }
-                double sueldototal = (sueldo * asistencia) - aux.getAnticipo();
-                lblsueldo.setText(Double.toString(sueldototal));
+//                int sueldo = 1;
+//                double asistencia = aux.getAsistencia();
+//                ArrayList<logica.tipo_trabajador> listatipo = new GestionSueldo().seleccionar(aux.getTipo());
+//                for (logica.tipo_trabajador aux1 : listatipo) {
+//                    sueldo = aux1.getSueldo();
+//                }
+//                double sueldototal = (sueldo * asistencia) - aux.getAnticipo();
+                lblsueldo.setText(Integer.toString(aux.getSueldo() - aux.getAnticipo()));
             }
         }
 
@@ -339,6 +339,7 @@ public class sueldos extends javax.swing.JInternalFrame {
             trab.setComentarios(aux.getComentarios());
             trab.setAsistencia(aux.getAsistencia());
             trab.setAnticipo(Integer.parseInt(txtanticipo.getText().toString()));
+            trab.setSueldo(aux.getSueldo());
             if (JOptionPane.showConfirmDialog(null, "Desea dar $" + txtanticipo.getText().toString() + " de anticipo al trabajador: " + aux.getNombre()) == JOptionPane.YES_OPTION) {
                 new GestionTrabajadores().editar(trab, aux.getRut());
                 txtanticipo.setText("");

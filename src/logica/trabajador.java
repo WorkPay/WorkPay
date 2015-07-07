@@ -9,6 +9,7 @@ package logica;
  * @author Alexi
  */
 public class trabajador {
+
     private String nombre;
     private String rut;
     private int telefono;
@@ -16,6 +17,15 @@ public class trabajador {
     private String comentarios;
     private double asistencia;
     private int anticipo;
+    private int sueldo;
+
+    public int getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(int sueldo) {
+        this.sueldo = sueldo;
+    }
 
     public String getNombre() {
         return nombre;
@@ -72,7 +82,4 @@ public class trabajador {
     public void setAnticipo(int anticipo) {
         this.anticipo = anticipo;
     }
-    
-    
-    
 }

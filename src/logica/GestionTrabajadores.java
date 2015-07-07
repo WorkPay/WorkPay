@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class GestionTrabajadores {
 
-    private static final String INSERT = "INSERT INTO trabajador (Nombre, Rut, Telefono, Tipo, Comentarios, Asistencia, Anticipo) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO trabajador (Nombre, Rut, Telefono, Tipo, Comentarios, Asistencia, Anticipo, Sueldo) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SELECT = "SELECT * FROM trabajador";
     private static final String SELECTFILTRO = "SELECT * FROM trabajador WHERE Nombre LIKE ?";
     private static final String UPDATE = "UPDATE trabajador SET Nombre=?, Rut=?, Telefono=?, Tipo=?, Comentarios=?, Asistencia=?, Anticipo=? WHERE Rut=?";
@@ -65,6 +65,7 @@ public class GestionTrabajadores {
             st.setString(5, trab.getComentarios());
             st.setDouble(6, trab.getAsistencia());
             st.setInt(7, trab.getAnticipo());
+            st.setInt(8, trab.getSueldo());
             st.executeUpdate();
             JOptionPane.showMessageDialog(null, "Trabajador ingresado correctamente");
         } catch (SQLException ex) {
@@ -89,6 +90,7 @@ public class GestionTrabajadores {
                 trab.setComentarios(rs.getString(5));
                 trab.setAsistencia(rs.getDouble(6));
                 trab.setAnticipo(rs.getInt(7));
+                trab.setSueldo(rs.getInt(8));
                 lista.add(trab);
             }
         } catch (SQLException ex) {
@@ -115,6 +117,7 @@ public class GestionTrabajadores {
                 trab.setComentarios(rs.getString(5));
                 trab.setAsistencia(rs.getDouble(6));
                 trab.setAnticipo(rs.getInt(7));
+                trab.setSueldo(rs.getInt(8));
                 lista.add(trab);
             }
         } catch (SQLException ex) {

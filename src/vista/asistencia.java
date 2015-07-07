@@ -15,6 +15,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import logica.GestionAsistencia;
+import logica.GestionSueldo;
 import logica.GestionTrabajadores;
 
 /**
@@ -271,6 +272,19 @@ public class asistencia extends javax.swing.JInternalFrame {
                     //Registrar asistencia
                     try {
                         new GestionAsistencia().sumarAsistencia(Double.toString(asis), TBasistenciatrabajadores.getValueAt(i, 2).toString());
+
+                        double sueldo = 0;
+                        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(TBasistenciatrabajadores.getValueAt(i, 2).toString());
+                        for (logica.trabajador aux : lista) {
+                            ArrayList<logica.tipo_trabajador> listatipo = new GestionSueldo().seleccionar(aux.getTipo());
+                            for (logica.tipo_trabajador aux1 : listatipo) {
+                                sueldo = (aux1.getSueldo() * aux.getAsistencia()) - aux.getAnticipo();
+
+                            }
+                            new GestionAsistencia().actualizarSueldo(aux.getNombre(), Double.toString(sueldo));
+                        }
+
+
                         bandera = true;
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
@@ -306,6 +320,17 @@ public class asistencia extends javax.swing.JInternalFrame {
                     //Registrar asistencia
                     try {
                         new GestionAsistencia().sumarAsistencia(Double.toString(asis), TBasistenciatrabajadores.getValueAt(i, 2).toString());
+
+                        double sueldo = 0;
+                        ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(TBasistenciatrabajadores.getValueAt(i, 2).toString());
+                        for (logica.trabajador aux : lista) {
+                            ArrayList<logica.tipo_trabajador> listatipo = new GestionSueldo().seleccionar(aux.getTipo());
+                            for (logica.tipo_trabajador aux1 : listatipo) {
+                                sueldo = (aux1.getSueldo() * aux.getAsistencia()) - aux.getAnticipo();
+
+                            }
+                            new GestionAsistencia().actualizarSueldo(aux.getNombre(), Double.toString(sueldo));
+                        }
                         bandera = true;
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());

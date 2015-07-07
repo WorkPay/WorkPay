@@ -17,7 +17,8 @@ import java.util.Calendar;
 public class GestionAsistencia {
 
     private static final String UPDATE = "UPDATE trabajador SET Asistencia = Asistencia + ? WHERE Nombre = ?";
-    private static final String asistencia0 = "UPDATE trabajador SET Asistencia = 0 WHERE Nombre = ?";
+    private static final String UPDATEsueledo = "UPDATE trabajador SET Sueldo = ? WHERE Nombre = ?";
+    private static final String asistencia0 = "UPDATE trabajador SET Asistencia = 0, Sueldo = 0 WHERE Nombre = ?";
     private static final String updateFECHA = "UPDATE fecha SET fecha = ? WHERE 1";
     private static final String fecha0 = "UPDATE fecha SET fecha = '1111-11-11' WHERE 1";
     private static final String selectFECHA = "SELECT * FROM fecha";
@@ -87,6 +88,18 @@ public class GestionAsistencia {
         try {
             PreparedStatement st = conex.getConector().prepareStatement(UPDATE);
             st.setString(1, asis);
+            st.setString(2, nombre);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        conex.desconectar();
+    }
+    public void actualizarSueldo(String nombre, String sueldo) {
+        conex.conectar();
+        try {
+            PreparedStatement st = conex.getConector().prepareStatement(UPDATEsueledo);
+            st.setString(1, sueldo);
             st.setString(2, nombre);
             st.executeUpdate();
         } catch (SQLException ex) {

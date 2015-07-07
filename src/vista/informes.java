@@ -73,6 +73,8 @@ public class informes extends javax.swing.JInternalFrame {
         lbltelefono = new javax.swing.JLabel();
         lblrut = new javax.swing.JLabel();
         lblnombre = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblsueldo = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("generacion de informes");
@@ -134,6 +136,10 @@ public class informes extends javax.swing.JInternalFrame {
 
         lblnombre.setText("-");
 
+        jLabel9.setText("Sueldo: $");
+
+        lblsueldo.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,9 +162,11 @@ public class informes extends javax.swing.JInternalFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblsueldo)
                             .addComponent(lblnombre)
                             .addComponent(lblrut)
                             .addComponent(lbltelefono)
@@ -211,8 +219,12 @@ public class informes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(lblcomentarios))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(lblcomentarios))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(lblsueldo))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,6 +245,7 @@ public class informes extends javax.swing.JInternalFrame {
                 String asistencia = "";
                 String anticipo = "";
                 String comentarios = "";
+                String sueldo = "";
                 for (logica.trabajador aux : lista) {
                     nombre = aux.getNombre();
                     rut = aux.getRut();
@@ -249,6 +262,7 @@ public class informes extends javax.swing.JInternalFrame {
                     asistencia = Double.toString(aux.getAsistencia());
                     anticipo = Integer.toString(aux.getAnticipo());
                     comentarios = aux.getComentarios();
+                    sueldo = Integer.toString(aux.getSueldo());
                 }
                 Calendar actual = Calendar.getInstance();
                 int ano = 2015;
@@ -275,6 +289,8 @@ public class informes extends javax.swing.JInternalFrame {
                 documento.add(new Paragraph("Anticipo: $" + anticipo));
                 documento.add(new Paragraph(" "));
                 documento.add(new Paragraph("Comentarios: " + comentarios));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Sueldo: $" + sueldo));
                 documento.close();
                 JOptionPane.showMessageDialog(null, "Informe creado exitosamente");
                 Process p = Runtime.getRuntime().exec("explorer.exe C:\\Informes");
@@ -311,6 +327,7 @@ public class informes extends javax.swing.JInternalFrame {
                 lblnombre.setText(aux.getNombre());
                 lblrut.setText(aux.getRut());
                 lbltelefono.setText(Integer.toString(aux.getTelefono()));
+                lblsueldo.setText(Integer.toString(aux.getSueldo()));
                 if (aux.getTipo() == 1) {
                     lbltipo.setText("Maestro");
                 } else {
@@ -334,12 +351,14 @@ public class informes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblanticipo;
     private javax.swing.JLabel lblasistencia;
     private javax.swing.JLabel lblcomentarios;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lblrut;
+    private javax.swing.JLabel lblsueldo;
     private javax.swing.JLabel lbltelefono;
     private javax.swing.JLabel lbltipo;
     private javax.swing.JList listatrabajadores;

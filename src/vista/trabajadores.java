@@ -277,7 +277,8 @@ public class trabajadores extends javax.swing.JInternalFrame {
                 }
                 String comentario = txtcomentarios.getText().toString();
                 double asistencia = 0;
-                int anticipo = 0;
+                int anticipo = 0;                
+                int sueldo = 0;
                 boolean r = validarRut(rut);
                 if (r == true) {
                     try {
@@ -289,6 +290,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
                         trab.setComentarios(comentario);
                         trab.setAsistencia(asistencia);
                         trab.setAnticipo(anticipo);
+                        trab.setSueldo(sueldo);
                         new GestionTrabajadores().insertar(trab);
                         txtnombretrabajador.setText("");
                         txtnombretrabajador.requestFocus();
@@ -393,10 +395,12 @@ public class trabajadores extends javax.swing.JInternalFrame {
                 String comentario = txtcomentarios.getText().toString();
                 double asistencia = 0;
                 int anticipo = 0;
+                int sueldo = 0;
                 ArrayList<logica.trabajador> lista1 = new GestionTrabajadores().seleccionarFiltro(nombreEditar);
                 for (logica.trabajador aux : lista1) {
                     asistencia = aux.getAsistencia();
                     anticipo = aux.getAnticipo();
+                    sueldo = aux.getSueldo();
                 }
 
                 boolean r = validarRut(rut);
@@ -410,6 +414,7 @@ public class trabajadores extends javax.swing.JInternalFrame {
                         trab.setComentarios(comentario);
                         trab.setAsistencia(asistencia);
                         trab.setAnticipo(anticipo);
+                        trab.setSueldo(sueldo);
                         new GestionTrabajadores().editar(trab, rutEditar);
                         JOptionPane.showMessageDialog(null, "Datos de trabajador editados correctamente");
                         txtnombretrabajador.setText("");

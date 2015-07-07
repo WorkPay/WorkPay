@@ -9,9 +9,19 @@ package logica;
  * @author Alexi
  */
 public class tipo_trabajador {
+
     private int id;
     private String tipo;
     private int sueldo;
+    private int sueldo_historico;
+
+    public int getSueldo_historico() {
+        return sueldo_historico;
+    }
+
+    public void setSueldo_historico(int sueldo_historico) {
+        this.sueldo_historico = sueldo_historico;
+    }
 
     public int getId() {
         return id;
@@ -36,6 +46,4 @@ public class tipo_trabajador {
     public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
-    
-    
 }
