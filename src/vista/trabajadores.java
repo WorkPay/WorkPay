@@ -7,7 +7,9 @@ package vista;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import logica.GestionAsistencia;
 import logica.GestionTrabajadores;
+import logica.asistencia;
 import logica.trabajador;
 import org.jdesktop.xswingx.PromptSupport;
 
@@ -292,6 +294,13 @@ public class trabajadores extends javax.swing.JInternalFrame {
                         trab.setAnticipo(anticipo);
                         trab.setSueldo(sueldo);
                         new GestionTrabajadores().insertar(trab);
+                        
+                        asistencia asis = new asistencia();
+                        asis.setAsistencia(asistencia);
+                        asis.setSueldo_historico(sueldo);
+                        asis.setTrabajador(rut);
+                        new GestionAsistencia().insertAsistenciaHisto(asis);
+                        
                         txtnombretrabajador.setText("");
                         txtnombretrabajador.requestFocus();
                         txtruttrabajador.setText("");

@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import logica.GestionAsistencia;
 import logica.GestionTrabajadores;
 import org.jdesktop.xswingx.PromptSupport;
 
@@ -75,6 +76,10 @@ public class informes extends javax.swing.JInternalFrame {
         lblnombre = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblsueldo = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblsueldohisto = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lblasistenciahisto = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Xperia", 0, 18)); // NOI18N
         jLabel1.setText("generacion de informes");
@@ -140,6 +145,14 @@ public class informes extends javax.swing.JInternalFrame {
 
         lblsueldo.setText("-");
 
+        jLabel10.setText("Sueldo Historico: $");
+
+        lblsueldohisto.setText("-");
+
+        jLabel11.setText("Asistencia Historica:");
+
+        lblasistenciahisto.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,26 +169,36 @@ public class informes extends javax.swing.JInternalFrame {
                             .addComponent(btverinfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblsueldo)
-                            .addComponent(lblnombre)
-                            .addComponent(lblrut)
-                            .addComponent(lbltelefono)
-                            .addComponent(lblcomentarios)
-                            .addComponent(lblanticipo)
-                            .addComponent(lbltipo)
-                            .addComponent(lblasistencia)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblsueldo)
+                                    .addComponent(lblnombre)
+                                    .addComponent(lblrut)
+                                    .addComponent(lbltelefono)
+                                    .addComponent(lblcomentarios)
+                                    .addComponent(lblanticipo)
+                                    .addComponent(lbltipo)
+                                    .addComponent(lblasistencia)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblasistenciahisto)
+                                    .addComponent(lblsueldohisto)))))
                     .addComponent(txtbuscartrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,8 +246,16 @@ public class informes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(lblsueldo))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                            .addComponent(lblsueldo))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(lblsueldohisto))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(lblasistenciahisto))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,6 +277,8 @@ public class informes extends javax.swing.JInternalFrame {
                 String anticipo = "";
                 String comentarios = "";
                 String sueldo = "";
+                String sueldohisto = "";
+                String asistenciahisto = "";
                 for (logica.trabajador aux : lista) {
                     nombre = aux.getNombre();
                     rut = aux.getRut();
@@ -263,6 +296,12 @@ public class informes extends javax.swing.JInternalFrame {
                     anticipo = Integer.toString(aux.getAnticipo());
                     comentarios = aux.getComentarios();
                     sueldo = Integer.toString(aux.getSueldo());
+
+                    ArrayList<logica.asistencia> lista1 = new GestionAsistencia().traerAsistenciaHisto(aux.getRut());
+                    for (logica.asistencia aux1 : lista1) {
+                        sueldohisto = Integer.toString(aux1.getSueldo_historico());
+                        asistenciahisto = Double.toString(aux1.getAsistencia());
+                    }
                 }
                 Calendar actual = Calendar.getInstance();
                 int ano = 2015;
@@ -275,7 +314,7 @@ public class informes extends javax.swing.JInternalFrame {
                 PdfWriter.getInstance(documento, archivo);
                 documento.open();
                 documento.addAuthor("WorkPay");
-                documento.addTitle("WorkPay");  
+                documento.addTitle("WorkPay");
                 documento.add(new Paragraph("Nombre: " + nombre));
                 documento.add(new Paragraph(" "));
                 documento.add(new Paragraph("RUT: " + rut));
@@ -291,6 +330,10 @@ public class informes extends javax.swing.JInternalFrame {
                 documento.add(new Paragraph("Comentarios: " + comentarios));
                 documento.add(new Paragraph(" "));
                 documento.add(new Paragraph("Sueldo: $" + sueldo));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Sueldo Historico: $" + sueldohisto));
+                documento.add(new Paragraph(" "));
+                documento.add(new Paragraph("Asistencia Historica: " + asistenciahisto));
                 documento.close();
                 JOptionPane.showMessageDialog(null, "Informe creado exitosamente");
                 Process p = Runtime.getRuntime().exec("explorer.exe C:\\Informes");
@@ -337,13 +380,21 @@ public class informes extends javax.swing.JInternalFrame {
                         lbltipo.setText("Principiante");
                     }
                 }
+                ArrayList<logica.asistencia> lista1 = new GestionAsistencia().traerAsistenciaHisto(aux.getRut());
+                for (logica.asistencia aux1 : lista1) {
+                    lblasistenciahisto.setText(Double.toString(aux1.getAsistencia()));
+                    lblsueldohisto.setText(Integer.toString(aux1.getSueldo_historico()));
+                }
             }
+
         }
     }//GEN-LAST:event_btverinfoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btpdf;
     private javax.swing.JButton btverinfo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -355,10 +406,12 @@ public class informes extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblanticipo;
     private javax.swing.JLabel lblasistencia;
+    private javax.swing.JLabel lblasistenciahisto;
     private javax.swing.JLabel lblcomentarios;
     private javax.swing.JLabel lblnombre;
     private javax.swing.JLabel lblrut;
     private javax.swing.JLabel lblsueldo;
+    private javax.swing.JLabel lblsueldohisto;
     private javax.swing.JLabel lbltelefono;
     private javax.swing.JLabel lbltipo;
     private javax.swing.JList listatrabajadores;

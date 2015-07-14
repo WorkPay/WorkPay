@@ -22,7 +22,7 @@ import logica.GestionTrabajadores;
  *
  * @author Alexi
  */
-public class asistencia extends javax.swing.JInternalFrame {
+public class vasistencia extends javax.swing.JInternalFrame {
 
     public boolean bandera = false;
     public Date fechita = new Date();
@@ -30,7 +30,7 @@ public class asistencia extends javax.swing.JInternalFrame {
     /**
      * Creates new form workpay
      */
-    public asistencia() {
+    public vasistencia() {
         initComponents();
 
         bteditarasistencia.setEnabled(false);
@@ -282,7 +282,12 @@ public class asistencia extends javax.swing.JInternalFrame {
 
                             }
                             new GestionAsistencia().actualizarSueldo(aux.getNombre(), Double.toString(sueldo));
+                            
+                            new GestionAsistencia().updateAsistenciaHisto(Double.toString(asis), "0", aux.getRut());
                         }
+                        
+                        
+                        
                         bandera = true;
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
@@ -328,6 +333,8 @@ public class asistencia extends javax.swing.JInternalFrame {
 
                             }
                             new GestionAsistencia().actualizarSueldo(aux.getNombre(), Double.toString(sueldo));
+                            
+                            new GestionAsistencia().updateAsistenciaHisto(Double.toString(asis), "0", aux.getRut());
                         }
                         bandera = true;
                     } catch (Exception e) {

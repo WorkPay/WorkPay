@@ -279,6 +279,12 @@ public class sueldos extends javax.swing.JInternalFrame {
             //volver la asistencia a 0
             if (JOptionPane.showConfirmDialog(null, "¿Desea pagar $" + lblsueldo.getText().toString() + " de sueldo, correspondiente al trabajador " + lbltrabajador.getText().toString() + "?") == JOptionPane.YES_OPTION) {
                 new GestionAsistencia().asistenciaCero(lbltrabajador.getText().toString());
+                ArrayList<logica.trabajador> lista = new GestionTrabajadores().seleccionarFiltro(lbltrabajador.getText().toString());
+                String rut = "";
+                for (logica.trabajador aux : lista) {
+                    rut = aux.getRut();
+                }
+                new GestionAsistencia().updateAsistenciaHisto("0", lblsueldo.getText().toString(), rut);
                 lbltrabajador.setText("Nombre...");
                 lbldiastrabajados.setText("0");
                 lblanticipo.setText("0");
@@ -286,7 +292,7 @@ public class sueldos extends javax.swing.JInternalFrame {
             }
         } else {
             if (Double.parseDouble(lblsueldo.getText().toString()) == i) {
-                JOptionPane.showMessageDialog(null, "El trabajador "+lbltrabajador.getText().toString()+" no posee sueldo acomulado");
+                JOptionPane.showMessageDialog(null, "El trabajador " + lbltrabajador.getText().toString() + " no posee sueldo acomulado");
             } else {
                 JOptionPane.showMessageDialog(null, "No se puede pagar el sueldo a este trabajador ya que posee una deuda por Anticipo");
             }

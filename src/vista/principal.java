@@ -20,13 +20,13 @@ public class principal extends javax.swing.JFrame {
      */
     public principal() {
         initComponents();
-        asistencia a = new asistencia();
+        vasistencia a = new vasistencia();
         jDesktopPane1.add(a);
         a.setVisible(true);
         try {
             a.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(asistencia.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(vasistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -146,13 +146,13 @@ public class principal extends javax.swing.JFrame {
     private void btabrirasistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btabrirasistenciaActionPerformed
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
-        asistencia a = new asistencia();
+        vasistencia a = new vasistencia();
         jDesktopPane1.add(a);
         a.setVisible(true);
         try {
             a.setMaximum(true);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(asistencia.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(vasistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btabrirasistenciaActionPerformed
 
